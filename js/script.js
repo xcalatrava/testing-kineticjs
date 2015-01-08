@@ -92,9 +92,9 @@ function Inicializa_mesa(mesa) {
 		          // y: Math.floor(17 + Math.random() * 20),
 		          // ox: Math.floor(((stage.getWidth() - 100) / 22) * n),
 		          // oy:  Math.floor(17 + Math.random() * 20),
-              x: (stage.getWidth()/2- 25) + 2 * n,
+              x: (stage.getWidth()/2- 5),
               y:  -200 + Math.random() * 20,
-              ox: (stage.getWidth()/2- 25) + 2 * n,
+              ox: (stage.getWidth()/2- 5),
               oy:  -200 + Math.random() * 20,
 		          width: 100,
 		          height: 163,
@@ -106,7 +106,7 @@ function Inicializa_mesa(mesa) {
 		          escogida: false,
 		          draggable: false,
 			        image: imageObj,
-              offset: {x:50, y: -300},
+              offset: {x:50, y: -225},
               rotation: 18 - (1.7 * n),
               or: 18 - (1.7 * n)
 
@@ -146,7 +146,7 @@ function Inicializa_mesa(mesa) {
 			    	// 	x: lastcarta.attrs.ox,
 			    	// 	y: lastcarta.attrs.oy,
 			    	// })
-            lastcarta.offset({x:50, y: -300});
+            lastcarta.offset({x:50, y: -225});
 			    	lastcarta.setDraggable(false);
 
 			    }
@@ -155,7 +155,7 @@ function Inicializa_mesa(mesa) {
     					// 	x: rectangle.attrs.ox,
     					// 	y: rectangle.attrs.oy + 50,
     					// });
-              rectangle.offset({x:50, y: -350});
+              rectangle.offset({x:50, y: -270});
     					rectangle.setDraggable(true);
 
     					lastcarta = rectangle;
@@ -175,13 +175,13 @@ function Inicializa_mesa(mesa) {
         if (rectangle.getY()> (rectangle.attrs.oy + 100)){
             rectangle.rotation(0);
             rectangle.setPosition({
-                x:posicion.x - 50,
+                x:posicion.x - 25,
                 y:posicion.y  - 82
               });
             rectangle.offsetY(0);
         } else{
           rectangle.rotation(rectangle.attrs.or);
-          rectangle.offsetY(-350);
+          rectangle.offsetY(-270);
         }
         layer.draw();
       });
@@ -193,6 +193,7 @@ function Inicializa_mesa(mesa) {
                 	x:eleccion_activa.getX(), 
                 	y:eleccion_activa.getY()
                 });
+                rectangle.offset({x:0,y:0});
 
                 if(eleccion_activa === carta_escogida1){
                 	eleccion_activa = carta_escogida2;
@@ -209,7 +210,7 @@ function Inicializa_mesa(mesa) {
 	                	y:rectangle.attrs.oy,
 	                });	
                 rectangle.rotation(rectangle.attrs.or);
-                rectangle.offset({x:50,y:-300});
+                rectangle.offset({x:50,y:-225});
               }
 
               layer.draw();
