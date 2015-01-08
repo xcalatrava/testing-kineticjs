@@ -107,11 +107,13 @@ function Inicializa_mesa(mesa) {
 		          draggable: false,
 			        image: imageObj,
               offset: {x:50, y: -300},
+              rotation: 18 - (1.7 * n),
+              or: 18 - (1.7 * n)
 
 
 			  });
 
-            rectangle.rotate(18 - (1.7 * n));
+            // rectangle.rotate(18 - (1.7 * n));
 
 	  //       var rectangle = new Kinetic.Rect({
 	  //         x: Math.floor(((stage.getWidth() - 100) / 22) * n),
@@ -134,39 +136,55 @@ function Inicializa_mesa(mesa) {
 			// 	  x: 1/6,
 			// 	  y: 1/6
 			// });
-
+      // rectangle.on('mouseover ', function(evt) {
 			rectangle.on('mouseover touchmove', function(evt) {
 			    var posicion = stage.getPointerPosition();
 
 			    $("footer h1").html(rectangle.getId() + "x:" + posicion.x + " y:" + posicion.y);
 			    if (typeof(lastcarta) != "undefined" && lastcarta != rectangle && lastcarta.attrs.escogida === false){
-			    	lastcarta.setPosition({
-			    		x: lastcarta.attrs.ox,
-			    		y: lastcarta.attrs.oy,
-			    	})
+			    	// lastcarta.setPosition({
+			    	// 	x: lastcarta.attrs.ox,
+			    	// 	y: lastcarta.attrs.oy,
+			    	// })
+            lastcarta.offset({x:50, y: -300});
 			    	lastcarta.setDraggable(false);
 
 			    }
 			    if(!rectangle.attrs.escogida){
-    					rectangle.setPosition({
-    						x: rectangle.attrs.ox,
-    						y: rectangle.attrs.oy + 50,
-    					});
+    					// rectangle.setPosition({
+    					// 	x: rectangle.attrs.ox,
+    					// 	y: rectangle.attrs.oy + 50,
+    					// });
+              rectangle.offset({x:50, y: -350});
     					rectangle.setDraggable(true);
-    			    layer.draw();
+
     					lastcarta = rectangle;
 				  }
 
           // if (posicion.y - last_pos_y > 30){
           //   rectangle.dispatchEvent('dragstart');
           // }
-
+                      layer.draw();
                       last_pos_y = posicion.y
 
 
 			    // }
 			});
-
+      rectangle.on('dragmove', function(){
+        var posicion = stage.getPointerPosition();
+        if (rectangle.getY()> (rectangle.attrs.oy + 100)){
+            rectangle.rotation(0);
+            rectangle.setPosition({
+                x:posicion.x - 50,
+                y:posicion.y  - 82
+              });
+            rectangle.offsetY(0);
+        } else{
+          rectangle.rotation(rectangle.attrs.or);
+          rectangle.offsetY(-350);
+        }
+        layer.draw();
+      });
 
 			rectangle.on('dragend', function() {
 
@@ -188,8 +206,10 @@ function Inicializa_mesa(mesa) {
               }else{
 	              rectangle.setPosition({
 	                	x:rectangle.attrs.ox, 
-	                	y:rectangle.attrs.oy
+	                	y:rectangle.attrs.oy,
 	                });	
+                rectangle.rotation(rectangle.attrs.or);
+                rectangle.offset({x:50,y:-300});
               }
 
               layer.draw();
