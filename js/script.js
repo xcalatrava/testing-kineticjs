@@ -165,6 +165,17 @@ function Inicializa_mesa(images) {
                     rectangle.rotation(rectangle.attrs.or);
                     rectangle.offsetY(-270);
                 }
+                if (eleccion_activa && isNearOutline(rectangle, eleccion_activa)) {
+                    if (eleccion_activa.name() === 'carta_escogida1') {
+                        carta_escogida1_shadow.visible(true);
+                    }
+                    if (eleccion_activa.name() === 'carta_escogida2') {
+                        carta_escogida2_shadow.visible(true);
+                    }
+                } else {
+                    carta_escogida1_shadow.visible(false);
+                    carta_escogida2_shadow.visible(false);
+                }
                 layer.draw();
             });
 
@@ -200,7 +211,8 @@ function Inicializa_mesa(images) {
                         y: -225
                     });
                 }
-
+                carta_escogida1_shadow.visible(false);
+                carta_escogida2_shadow.visible(false);
                 layer.draw();
             });
 
@@ -216,12 +228,30 @@ function Inicializa_mesa(images) {
         height: 163,
         fill: 'blue',
         stroke: 'black',
-        strokeWidth: 3,
+        strokeWidth: 1,
         name: 'carta_escogida1',
-        draggable: false
+        draggable: false,
+    })
+    var carta_escogida1_shadow = new Kinetic.Rect({
+        x: Math.floor((stage.getWidth() - 220) / 2)-5,
+        y: Math.floor(stage.getHeight() - 180)-5,
+        width: 100,
+        height: 163,
+        fill: '#39869e',
+        name: 'carta_escogida1_shadow',
+        draggable: false,
+        scale: {
+            x: 1.1,
+            y: 1.06
+        },
+        opacity: 0.5,
+        lineCap: 'round',
+        cornerRadius: 3,
+        visible: false
     })
 
     eleccion_activa = carta_escogida1;
+        layer.add(carta_escogida1_shadow);
     layer.add(carta_escogida1);
 
     var carta_escogida2 = new Kinetic.Rect({
@@ -229,13 +259,30 @@ function Inicializa_mesa(images) {
         y: carta_escogida1.attrs.y,
         width: 100,
         height: 163,
-        fill: 'grey',
+        fill: 'blue',
         stroke: 'black',
-        strokeWidth: 3,
+        strokeWidth: 1,
         name: 'carta_escogida2',
-        draggable: false
+        draggable: false,       
     })
-
+        var carta_escogida2_shadow = new Kinetic.Rect({
+        x: carta_escogida1.attrs.x + 100 + 15,
+        y: carta_escogida1.attrs.y-5,
+        width: 100,
+        height: 163,
+        fill: '#39869e',
+        name: 'carta_escogida2_shadow',
+        draggable: false,
+        scale: {
+            x: 1.1,
+            y: 1.06
+        },
+        opacity: 0.5,
+        lineCap: 'round',
+        cornerRadius: 3,
+        visible: false
+    })
+    layer.add(carta_escogida2_shadow);
     layer.add(carta_escogida2);
 
     layer.add(group);
