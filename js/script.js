@@ -1,14 +1,29 @@
+var stage;
+var layer;
+var group_baraja;
+var group_escogidas;
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
 function isNearOutline(carta, carta_escogida) {
     var a = carta;
     var o = carta_escogida;
-    var ax = a.getX();
-    var ay = a.getY();
+    var ax = a.getX()-50;
+    var ay = a.getY()+81;
     var ox = o.getX();
     var oy = o.getY();
 
 
 
-    if (ax > ox - 50 && ax < ox + 50 && ay > oy - 50 && ay < oy + 50) {
+    if (Math.abs(ax - ox) < 50 && Math.abs(ay - oy) < 50) {
         $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
         return true;
     } else {
@@ -61,21 +76,47 @@ function Loadimages(callback) {
     }
 }
 
+function Muestra_cartas(images) {
+    //animacion para mostrar carta escogida 1
+    var cartas = group_escogidas.find('Image');
 
+    var tween = new Kinetic.Tween({
+        node: cartas[0],
+        duration: 1,
+        scaleX: 0
+    });
+
+    tween.play();
+
+    var imageObj = new Image();
+
+    var imageObj = images[cartas[0].id()];
+    cartas[0].setImage(imageObj);
+
+    var tween = new Kinetic.Tween({
+        node: cartas[0],
+        duration: 1,
+        scaleX: 1
+    });
+
+    tween.play();
+
+    // animacion para mostrar carta escogida 2
+}
 
 
 
 function Inicializa_mesa(images) {
 
-
-    var stage = new Kinetic.Stage({
+    stage = new Kinetic.Stage({
         container: 'lienzo',
         width: $("#lienzo").width(),
         height: (window.innerHeight / 100) * 80,
     });
 
-    var group = new Kinetic.Group();
-    var layer = new Kinetic.Layer();
+    group_baraja = new Kinetic.Group();
+    group_escogidas = new Kinetic.Group();
+    layer = new Kinetic.Layer();
     var lastcarta;
     var eleccion_activa;
     var last_pos_y;
@@ -84,10 +125,15 @@ function Inicializa_mesa(images) {
     var angle = 0;
     var radius = 50;
 
+    var lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+    shuffleArray(lista);
+
     for (var n = 1; n < 22; n++) {
         (function() {
 
-            // var imageObj = new Image();
+
+            var imageObj = new Image();
+
             // imageObj.src = '/images/Reverso.jpg';
             var imageObj = images.reverso;
 
@@ -101,7 +147,7 @@ function Inicializa_mesa(images) {
                 stroke: 'black',
                 strokeWidth: 1,
                 name: 'carta',
-                id: 'carta' + n,
+                id: 'carta' + lista[n-1],
                 escogida: false,
                 draggable: false,
                 image: imageObj,
@@ -111,9 +157,9 @@ function Inicializa_mesa(images) {
                 },
                 rotation: 18 - (1.7 * n),
                 or: 18 - (1.7 * n)
-
-
             });
+
+            group_baraja.add(rectangle);
 
             // rectangle.on('mouseover ', function(evt) {
             rectangle.on('mouseover touchmove', function(evt) {
@@ -190,6 +236,7 @@ function Inicializa_mesa(images) {
                         x: 0,
                         y: 0
                     });
+                    eleccion_activa.visible(false);
 
                     if (eleccion_activa === carta_escogida1) {
                         eleccion_activa = carta_escogida2;
@@ -199,7 +246,9 @@ function Inicializa_mesa(images) {
 
                     rectangle.setDraggable(false);
                     rectangle.attrs.escogida = true;
-                    rectangle.moveToBottom();
+                    rectangle.remove();
+                    group_escogidas.add(rectangle);
+                    //rectangle.moveToBottom();
                 } else {
                     rectangle.setPosition({
                         x: rectangle.attrs.ox,
@@ -216,7 +265,7 @@ function Inicializa_mesa(images) {
                 layer.draw();
             });
 
-            group.add(rectangle);
+
         })();
     }
 
@@ -237,7 +286,7 @@ function Inicializa_mesa(images) {
         y: Math.floor(stage.getHeight() - 180)-5,
         width: 100,
         height: 163,
-        fill: '#39869e',
+        fill: 'red',
         name: 'carta_escogida1_shadow',
         draggable: false,
         scale: {
@@ -270,7 +319,7 @@ function Inicializa_mesa(images) {
         y: carta_escogida1.attrs.y-5,
         width: 100,
         height: 163,
-        fill: '#39869e',
+        fill: 'red',
         name: 'carta_escogida2_shadow',
         draggable: false,
         scale: {
@@ -285,7 +334,9 @@ function Inicializa_mesa(images) {
     layer.add(carta_escogida2_shadow);
     layer.add(carta_escogida2);
 
-    layer.add(group);
+    layer.add(group_escogidas);
+    layer.add(group_baraja);
+
 
     stage.add(layer);
 
@@ -301,6 +352,9 @@ $(document).ready(function() {
     Loadimages(Inicializa_mesa);
     $("#reset").click(function() {
         Loadimages(Inicializa_mesa);
+    });
+    $("#info").click(function() {
+        Loadimages(Muestra_cartas);
     });
 
 
