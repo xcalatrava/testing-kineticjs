@@ -97,29 +97,6 @@ function Inicializa_mesa(mesa) {
 			  });
 
 
-
-	  //       var rectangle = new Kinetic.Rect({
-	  //         x: Math.floor(((stage.getWidth() - 100) / 22) * n),
-	  //         y: Math.floor(17 + Math.random() * 20),
-	  //         ox: Math.floor(((stage.getWidth() - 100) / 22) * n),
-	  //         oy:  Math.floor(17 + Math.random() * 20),
-	  //         width: 100,
-	  //         height: 163,
-	  //         // fill: 'red',
-	  //         stroke: 'black',
-	  //         strokeWidth: 1,
-	  //         name: 'carta',
-	  //         id: 'carta' + n,
-	  //         escogida: false,
-	  //         draggable: false,
-	  //         fillPriority: 'pattern',
-	  //         fillPatternImage: imageObj,
-	  //       });
-	  //       rectangle.fillPatternScale({
-			// 	  x: 1/6,
-			// 	  y: 1/6
-			// });
-
 			rectangle.on('mouseover touchmove', function(evt) {
 			    // get the shape that was clicked on
 
@@ -142,9 +119,6 @@ function Inicializa_mesa(mesa) {
 					lastcarta = rectangle;
 				}
 
-
-
-			    // }
 			});
 
 
@@ -180,9 +154,6 @@ function Inicializa_mesa(mesa) {
      }
 
 
-			// group.on('mouseout touchstop', function(evt){
-			// 	for()
-			// })
 
       var carta_escogida1 = new Kinetic.Rect({
           x: Math.floor((stage.getWidth() - 220) / 2),
@@ -230,8 +201,5 @@ $(document).ready(function() {
 	$("#reset").click(function(){
 		Inicializa_mesa(mesa);
 		});
-
-
-
 
 });

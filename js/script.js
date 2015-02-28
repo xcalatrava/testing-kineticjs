@@ -21,8 +21,6 @@ function isNearOutline(carta, carta_escogida) {
     var ox = o.getX();
     var oy = o.getY();
 
-
-
     if (Math.abs(ax - ox) < 50 && Math.abs(ay - oy) < 50) {
         $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
         return true;
@@ -31,6 +29,8 @@ function isNearOutline(carta, carta_escogida) {
     }
 }
 
+//**************************************************
+//función principal de llamada a las otras funciones
 function Loadimages(callback) {
     var sources = {
         reverso: '/images/Reverso.jpg',
@@ -97,6 +97,8 @@ function Loadimages(callback) {
     }
 }
 
+//*****************************************
+//animación que meustra las dos cartas escogidas
 function Muestra_cartas(images) {
 
     group_baraja.visible(false);
@@ -143,33 +145,6 @@ function Muestra_cartas(images) {
             }
         });
 
-    // var tl = new TimelineLite();
-    // tl.to(cartas[0], 1, {
-    //     kinetic: {
-    //         x: 0,
-    //         y: (stage.getHeight() - cartas[0].height() * escala) / 2,
-    //         scale: escala
-    //     },
-    //     ease: Power4.easeOut
-    // })
-    //     .to(cartas[0], 1, {
-    //         kinetic: {
-    //             x: cartas[0].width() * escala,
-    //             scaleX: 0
-    //         },
-    //         onComplete: function() {
-    //             cartas[0].setImage(imageObj);
-    //         }
-    //     })
-    //     .to(cartas[0], 1, {
-    //         kinetic: {
-    //             scaleX: -escala
-    //         }
-    //     });
-
-    // animacion para mostrar carta escogida 2
-
-
 
     var tl2 = new TimelineLite();
     tl.to(cartas[1], 1, {
@@ -196,9 +171,20 @@ function Muestra_cartas(images) {
         });
 }
 
-
+//**************************************************
+//Pone la baraja en la mesa con las cartas barajadas
 
 function Inicializa_mesa(images) {
+
+    var lastcarta;
+    var eleccion_activa;
+    var last_pos_y;
+    var offset = 100;
+    var angle_start = 350;
+    var angle = 0;
+    var radius = 50;
+    var lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+    shuffleArray(lista);
 
     stage = new Kinetic.Stage({
         container: 'lienzo',
@@ -209,24 +195,12 @@ function Inicializa_mesa(images) {
     group_baraja = new Kinetic.Group();
     group_escogidas = new Kinetic.Group();
     layer = new Kinetic.Layer();
-    var lastcarta;
-    var eleccion_activa;
-    var last_pos_y;
-    var offset = 100;
-    var angle_start = 350;
-    var angle = 0;
-    var radius = 50;
 
-    var lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
-    shuffleArray(lista);
-
+//pone cada una de las cartas encima de la mesa en la posicion de baraja
     for (var n = 1; n < 22; n++) {
         (function() {
 
-
             var imageObj = new Image();
-
-            // imageObj.src = '/images/Reverso.jpg';
             var imageObj = images.reverso;
 
             var rectangle = new Kinetic.Image({
@@ -253,7 +227,8 @@ function Inicializa_mesa(images) {
 
             group_baraja.add(rectangle);
 
-            // rectangle.on('mouseover ', function(evt) {
+            //movimiento de las cartas al pasar el dedo por encima
+            //sobresalen un poco
             rectangle.on('mouseover touchmove', function(evt) {
                 var posicion = stage.getPointerPosition();
 
@@ -285,7 +260,8 @@ function Inicializa_mesa(images) {
                 last_pos_y = posicion.y
 
             });
-
+        
+            //arrastre de las cartas 
             rectangle.on("dragstart", function() {
                 rectangle.startingPos = rectangle.position();
                 $("footer h1").html("Draggin....");
@@ -361,7 +337,7 @@ function Inicializa_mesa(images) {
         })();
     }
 
-
+    //recatangulo que acoge la cartas escogida 1
     var carta_escogida1 = new Kinetic.Rect({
         x: Math.floor((stage.getWidth() - 220) / 2),
         y: Math.floor(stage.getHeight() - 180),
@@ -373,6 +349,7 @@ function Inicializa_mesa(images) {
         name: 'carta_escogida1',
         draggable: false,
     })
+    //rectangulo de sombra de la posición 1
     var carta_escogida1_shadow = new Kinetic.Rect({
         x: Math.floor((stage.getWidth() - 220) / 2)-5,
         y: Math.floor(stage.getHeight() - 180)-5,
@@ -391,10 +368,13 @@ function Inicializa_mesa(images) {
         visible: false
     })
 
+    //marca la carta escogida por defecto para que el usuario la suelte en la posición 1 primero
+    //añade las formas a la layer
     eleccion_activa = carta_escogida1;
-        layer.add(carta_escogida1_shadow);
+    layer.add(carta_escogida1_shadow);
     layer.add(carta_escogida1);
 
+    //definición de la posición de la carta escogida 2
     var carta_escogida2 = new Kinetic.Rect({
         x: carta_escogida1.attrs.x + 100 + 20,
         y: carta_escogida1.attrs.y,
@@ -406,7 +386,8 @@ function Inicializa_mesa(images) {
         name: 'carta_escogida2',
         draggable: false,       
     })
-        var carta_escogida2_shadow = new Kinetic.Rect({
+    //definición de la sombra de la posición de la carta escogida 2
+    var carta_escogida2_shadow = new Kinetic.Rect({
         x: carta_escogida1.attrs.x + 100 + 15,
         y: carta_escogida1.attrs.y-5,
         width: 100,
@@ -423,6 +404,8 @@ function Inicializa_mesa(images) {
         cornerRadius: 3,
         visible: false
     })
+
+    //añade las formas de las cartas escogidas 2 a la layer
     layer.add(carta_escogida2_shadow);
     layer.add(carta_escogida2);
 
@@ -441,10 +424,14 @@ function Inicializa_mesa(images) {
 
 
 $(document).ready(function() {
+
+    //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
     Loadimages(Inicializa_mesa);
     $("#reset").click(function() {
         Loadimages(Inicializa_mesa);
     });
+
+    //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
         Loadimages(Muestra_cartas);
     });
