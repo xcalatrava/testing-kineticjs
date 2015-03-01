@@ -19,31 +19,50 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
+
 <body>
-  <section data-role="page" id="home"><!--  Page - Home -->
-   <header data-theme="b" data-role="header" data-position="fixed">
-      <h1>header</h1>
-      <a href="#" class="ui-btn-left ui-btn ui-btn-inline
+  <!--  Page - Home -->
+    <section data-role="page" id="home">
+        
+        <header data-theme="b" data-role="header" data-position="fixed">
+            <h1>header</h1>
+            <a href="#" class="ui-btn-left ui-btn ui-btn-inline
           ui-btn-icon-notext ui-mini ui-corner-all
             ui-icon-home" id="reset">reset</a>
-      <a href="#" class="ui-btn-right ui-btn ui-btn-inline
+            <a href="#" class="ui-btn-right ui-btn ui-btn-inline
           ui-btn-icon-notext ui-mini ui-corner-all
           ui-icon-info" id="info">Info</a>
-   </header><!-- header -->
+        </header>
+        <!-- header -->
 
-   <article data-role="content" id="lienzo">
+        <article data-role="content" id="lienzo" class="container">
+            <div id="container"></div>
 
-  
-   <div id="node"></div>
-   </article><!-- content -->
-   <footer data-theme="b" data-role="footer" data-position="fixed">
-      <h1>footer</h1>
-   </footer><!-- footer -->
-  </section><!-- home -->
+            <div id="carta1" class="card">
+              <figure class="front">1</figure>
+              <figure class="back">2</figure>
+            </div>            
+            <div id="carta2" class="card">
+              <figure class="front">1</figure>
+              <figure class="back">2</figure>
+            </div>
+            <div id="carta2" class="card"></div>
+        </article>
+        <!-- content -->
+
+
+
+        <footer data-theme="b" data-role="footer" data-position="fixed">
+            <h1>footer</h1>
+        </footer>
+        <!-- footer -->
+    </section>
+    <!-- home -->
 
 
 
 
 
 </body>
+
 </html>

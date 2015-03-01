@@ -2,6 +2,8 @@ var stage;
 var layer;
 var group_baraja;
 var group_escogidas;
+var container_h;
+var container_w;
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -106,6 +108,8 @@ function Muestra_cartas(images) {
 
     var cartas = group_escogidas.find('Image');
 
+    group_baraja = cartas;
+
     var escala = (stage.getWidth() - 20)/2;
 
     escala = escala / cartas[0].width();
@@ -117,58 +121,60 @@ function Muestra_cartas(images) {
     //animacion para mostrar carta escogida 1
 
     var imageObj = images[cartas[0].id()+"r"];
-        var imageObj1 = images[cartas[1].id()+"r"];
+    var imageObj1 = images[cartas[1].id()+"r"];
+
+
+var tween1 = new Kinetic.Tween({
+    node: cartas[0],
+    duration: 1,
+    x: 0,
+    y: (stage.getHeight() - cartas[0].height() * escala) / 2,
+    scaleY: escala,
+    scaleX: escala,
+    onFinish: function() {
+        $("#carta1").css("position", "absolute");
+        $("#carta1").css("left", cartas[0].x() + 15 + "px");
+        $("#carta1").css("top", cartas[0].y() + 60 + "px");
+    $("#carta1").css("width", (cartas[0].width() * cartas[0].scaleX()) + "px");
+    $("#carta1").css("height", (cartas[0].height() * cartas[0].scaleY()) + "px");
+        $("#carta1").css("background", "red");
+                $("#carta1").css("visibility", "visible");
+
+    },
+        easing: Kinetic.Easings.EaseInOut
+});
 
 
 
-    var tl = new TimelineLite();
-    tl.to(cartas[0], 1, {
-        kinetic: {
-            x: 0,
-            y: (stage.getHeight() - cartas[0].height() * escala) / 2,
-            scale: escala
-        },
-        ease: Power4.easeOut
-    })
-        .to(cartas[0], 1, {
-            kinetic: {
-                x: cartas[0].width() * escala,
-                scaleX: 0
-            },
-            onComplete: function() {
-                cartas[0].setImage(imageObj);
-            }
-        })
-        .to(cartas[0], 1, {
-            kinetic: {
-                scaleX: -escala
-            }
-        });
+// play tween<br>
+tween1.play();
 
 
-    var tl2 = new TimelineLite();
-    tl.to(cartas[1], 1, {
-        kinetic: {
-            x: cartas[1].width() * escala + 20,
+var tween2 = new Kinetic.Tween({
+  node: cartas[1],
+  duration: 1,
+x: cartas[1].width() * escala + 20,
             y: (stage.getHeight() - cartas[1].height() * escala) / 2,
-            scale: escala
-        },
-        ease: Power4.easeOut
-    })
-        .to(cartas[1], 1, {
-            kinetic: {
-                x: (cartas[1].width() * escala * 2) + 20,
-                scaleX: 0
-            },
-            onComplete: function() {
-                cartas[1].setImage(imageObj1);
-            }
-        })
-        .to(cartas[1], 1, {
-            kinetic: {
-                scaleX: -escala
-            }
-        });
+  scaleY: escala,
+  scaleX: escala,
+    onFinish: function(escala) {
+        $("#carta2").css("position", "absolute");
+    $("#carta2").css("left", cartas[1].x() + 15+ "px");
+    $("#carta2").css("top",cartas[1].y() + 60 + "px");        
+    $("#carta2").css("width", (cartas[1].width() * cartas[1].scaleX()) + "px");
+    $("#carta2").css("height", (cartas[1].height() * cartas[1].scaleY()) + "px");
+    $("#carta2").css("background", "red");
+            $("#carta2").css("visibility", "visible");
+    stage.destroy();
+    },
+
+  easing: Kinetic.Easings.EaseInOut
+});
+
+
+tween2.play();
+
+
 }
 
 //**************************************************
@@ -187,10 +193,15 @@ function Inicializa_mesa(images) {
     shuffleArray(lista);
 
     stage = new Kinetic.Stage({
-        container: 'lienzo',
-        width: $("#lienzo").width(),
+        container: 'container',
+        width: $("#container").width(),
         height: (window.innerHeight / 100) * 80,
     });
+
+    container_h = stage.height();
+    container_w = stage.width();
+ 
+
 
     group_baraja = new Kinetic.Group();
     group_escogidas = new Kinetic.Group();
@@ -428,15 +439,19 @@ $(document).ready(function() {
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
     Loadimages(Inicializa_mesa);
     $("#reset").click(function() {
+        $("#carta1").css("visibility", "hidden");
+        $("#carta2").css("visibility", "hidden");
+        
+
         Loadimages(Inicializa_mesa);
     });
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
         Loadimages(Muestra_cartas);
+    
+    //stage.destroy();
     });
-
-
 
 
 });
