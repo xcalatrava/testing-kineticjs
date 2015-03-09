@@ -4,36 +4,6 @@ var group_baraja;
 var group_escogidas;
 var container_h;
 var container_w;
-
-function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-}
-
-function isNearOutline(carta, carta_escogida) {
-    var a = carta;
-    var o = carta_escogida;
-    var ax = a.getX()-50;
-    var ay = a.getY()+81;
-    var ox = o.getX();
-    var oy = o.getY();
-
-    if (Math.abs(ax - ox) < 50 && Math.abs(ay - oy) < 50) {
-        $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
-        return true;
-    } else {
-        return false;
-    }
-}
-
-//**************************************************
-//función principal de llamada a las otras funciones
-function Loadimages(callback) {
     var sources = {
         reverso: '/images/Reverso.jpg',
         carta1: '/images/01.jpg',
@@ -80,6 +50,35 @@ function Loadimages(callback) {
         carta21r: '/images/21r.jpg',
     };
 
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+function isNearOutline(carta, carta_escogida) {
+    var a = carta;
+    var o = carta_escogida;
+    var ax = a.getX()-50;
+    var ay = a.getY()+81;
+    var ox = o.getX();
+    var oy = o.getY();
+
+    if (Math.abs(ax - ox) < 50 && Math.abs(ay - oy) < 50) {
+        $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//**************************************************
+//función principal de llamada a las otras funciones
+function Loadimages(callback) {
 
     var images = {};
     var loadedImages = 0;
@@ -137,13 +136,11 @@ var tween1 = new Kinetic.Tween({
         $("#carta1").css("top", cartas[0].y() + 60 + "px");
     $("#carta1").css("width", (cartas[0].width() * cartas[0].scaleX()) + "px");
     $("#carta1").css("height", (cartas[0].height() * cartas[0].scaleY()) + "px");
-        $("#carta1").css("background", "red");
                 $("#carta1").css("visibility", "visible");
 
     },
         easing: Kinetic.Easings.EaseInOut
 });
-
 
 
 // play tween<br>
@@ -163,9 +160,16 @@ x: cartas[1].width() * escala + 20,
     $("#carta2").css("top",cartas[1].y() + 60 + "px");        
     $("#carta2").css("width", (cartas[1].width() * cartas[1].scaleX()) + "px");
     $("#carta2").css("height", (cartas[1].height() * cartas[1].scaleY()) + "px");
-    $("#carta2").css("background", "red");
             $("#carta2").css("visibility", "visible");
     stage.destroy();
+
+        $("#carta1 .back").css("background","url('" + sources[group_baraja[0].id()] + "')");
+        $("#carta2 .back").css("background","url('" + sources[group_baraja[1].id()] + "')");
+        $("#carta1 .back").css("background-size","cover");
+        $("#carta2 .back").css("background-size","cover");
+
+        $("#carta1").addClass("flipped");
+        $("#carta2").addClass("flipped");
     },
 
   easing: Kinetic.Easings.EaseInOut
@@ -439,16 +443,22 @@ $(document).ready(function() {
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
     Loadimages(Inicializa_mesa);
     $("#reset").click(function() {
+        $("#container").css("z-index", "1001");
         $("#carta1").css("visibility", "hidden");
         $("#carta2").css("visibility", "hidden");
-        
+        $("#carta1").removeClass("flipped");
+        $("#carta2").removeClass("flipped");
 
-        Loadimages(Inicializa_mesa);
+        
+        if(!$("carta2").hasClass("flipped")){
+            Loadimages(Inicializa_mesa);
+        }
     });
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
         Loadimages(Muestra_cartas);
+
     
     //stage.destroy();
     });

@@ -1,56 +1,75 @@
 #home {
-  background: url('../images/02.png')
+  /*background: url('../images/02.jpg')*/
 }
 
 
 
-
-
-    .container {
-      -webkit-perspective: 800px;
+    .card {
+        -webkit-perspective: 800px;
          -moz-perspective: 800px;
            -o-perspective: 800px;
               perspective: 800px;
     }
 
-    .card {
-      -webkit-transition: -webkit-transform 1s;
-         -moz-transition: -moz-transform 1s;
-           -o-transition: -o-transform 1s;
-              transition: transform 1s;
-      -webkit-transform-style: preserve-3d;
-         -moz-transform-style: preserve-3d;
-           -o-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-      -webkit-backface-visibility: hidden;
-         -moz-backface-visibility: hidden;
-           -o-backface-visibility: hidden;
-              backface-visibility: hidden;
-    }
-
-    .flipped {
-      -webkit-transform: rotateY( 180deg );
-         -moz-transform: rotateY( 180deg );
-           -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
-    }
-
-    figure {
-      color: white;
-      text-align: center;
-      font-weight: bold;
-      font-size: 140px;
-    }
-
     .front {
-      background: red;
+    	position: absolute;
+    	margin: 0px;
+    	width: 100%;
+  		height: 100%;
+  		z-index: 900;
+	    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
+	    -webkit-transform: rotateX(0deg) rotateY(0deg);
+	    -moz-transform: rotateX(0deg) rotateY(0deg);
+	    transform: rotateX(0deg) rotateY(0deg);
+	    -webkit-transform-style: preserve-3d;
+	    -moz-transform-style: preserve-3d;
+	    transform-style: preserve-3d;
+	    -webkit-backface-visibility: hidden;
+	    -moz-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    /* -- transition is the magic sauce for animation -- */
+	    -webkit-transition: all 2s ease-in-out;
+	    transition: all 2s ease-in-out;
+	   	background: url("../images/reverso.jpg");
+		background-size: cover;
+    }
+
+    .card.flipped .front{
+    	z-index: 900;
+	    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+	    -webkit-transform: rotateY(180deg);
+	    -moz-transform: rotateY(180deg);
+	    transform: rotateY(180deg);
     }
 
     .back {
-      background: blue;
-      -webkit-transform: rotateY( 180deg );
-         -moz-transform: rotateY( 180deg );
-           -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
+        position: absolute;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 800;
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        /* setting to 180 causes an unnatural-looking half-flip */
+        
+        transform: rotateY(-180deg);
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /* -- transition is the magic sauce for animation -- */
+        
+        -webkit-transition: all 2s ease-in-out;
+        transition: all 2s ease-in-out;
+
     }
-  
+
+  .card.flipped .back {
+  		z-index: 1000;
+	    -webkit-transform: rotateX(0deg) rotateY(0deg);
+	    -moz-transform: rotateX(0deg) rotateY(0deg);
+	    transform: rotateX(0deg) rotateY(0deg);
+	    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  }
