@@ -98,6 +98,7 @@ function Loadimages(callback) {
     }
 }
 
+
 //*****************************************
 //animación que meustra las dos cartas escogidas
 function Muestra_cartas(images) {
@@ -109,83 +110,84 @@ function Muestra_cartas(images) {
 
     group_baraja = cartas;
 
-    var escala = (stage.getWidth() - 20)/2;
+    var escala = (stage.getWidth() - 20) / 2;
 
     escala = escala / cartas[0].width();
 
-    var imageObj = new Image();
 
-
-
-    //animacion para mostrar carta escogida 1
-
-    var imageObj = images[cartas[0].id()+"r"];
-    var imageObj1 = images[cartas[1].id()+"r"];
-
-
-var tween1 = new Kinetic.Tween({
-    node: cartas[0],
-    duration: 1,
-    x: 0,
-    y: (stage.getHeight() - cartas[0].height() * escala) / 2,
-    scaleY: escala,
-    scaleX: escala,
-    onFinish: function() {
-        $("#carta1").css("position", "absolute");
-        $("#carta1").css("left", cartas[0].x() + 15 + "px");
-        $("#carta1").css("top", cartas[0].y() + 60 + "px");
-    $("#carta1").css("width", (cartas[0].width() * cartas[0].scaleX()) + "px");
-    $("#carta1").css("height", (cartas[0].height() * cartas[0].scaleY()) + "px");
-                $("#carta1").css("visibility", "visible");
-
-    },
+    var tween1 = new Kinetic.Tween({
+        node: cartas[0],
+        duration: 1,
+        x: 0,
+        y: (stage.getHeight() - cartas[0].height() * escala) / 2,
+        scaleY: escala,
+        scaleX: escala,
+        onFinish: function() {
+        },
         easing: Kinetic.Easings.EaseInOut
-});
+    });
+
+    // play tween
+    tween1.play();
+
+     var tween2 = new Kinetic.Tween({
+                node: cartas[1],
+                duration: 1,
+                x: cartas[1].width() * escala + 20,
+                y: (stage.getHeight() - cartas[1].height() * escala) / 2,
+                scaleY: escala,
+                scaleX: escala,
+                onFinish: function() {
 
 
-// play tween<br>
-tween1.play();
+                    $("#carta1").css("position", "absolute");
+                    $("#carta1").css("left", cartas[0].x() + 17 + "px");
+                    $("#carta1").css("top", cartas[0].y() + 16 + "px");
+                    $("#carta1").css("width", (cartas[0].width() * cartas[0].scaleX()) + "px");
+                    $("#carta1").css("height", (cartas[0].height() * cartas[0].scaleY()) + "px");
+
+                    $("#carta1").show();
+
+                    $("#carta1 .back").css("background", "url('" + sources[group_baraja[0].id()] + "')");
+                    $("#carta1 .back").css("background-size", "cover");
 
 
-var tween2 = new Kinetic.Tween({
-  node: cartas[1],
-  duration: 1,
-x: cartas[1].width() * escala + 20,
-            y: (stage.getHeight() - cartas[1].height() * escala) / 2,
-  scaleY: escala,
-  scaleX: escala,
-    onFinish: function(escala) {
-        $("#carta2").css("position", "absolute");
-    $("#carta2").css("left", cartas[1].x() + 15+ "px");
-    $("#carta2").css("top",cartas[1].y() + 60 + "px");        
-    $("#carta2").css("width", (cartas[1].width() * cartas[1].scaleX()) + "px");
-    $("#carta2").css("height", (cartas[1].height() * cartas[1].scaleY()) + "px");
-            $("#carta2").css("visibility", "visible");
-    stage.destroy();
+                    $("#carta2").css("position", "absolute");
+                    $("#carta2").css("left", cartas[1].x() + 17 + "px");
+                    $("#carta2").css("top", cartas[1].y() + 16 + "px");
+                    $("#carta2").css("width", (cartas[1].width() * cartas[1].scaleX()) + "px");
+                    $("#carta2").css("height", (cartas[1].height() * cartas[1].scaleY()) + "px");
 
-        $("#carta1 .back").css("background","url('" + sources[group_baraja[0].id()] + "')");
-        $("#carta2 .back").css("background","url('" + sources[group_baraja[1].id()] + "')");
-        $("#carta1 .back").css("background-size","cover");
-        $("#carta2 .back").css("background-size","cover");
+                    $("#carta2 .back").css("background", "url('" + sources[group_baraja[1].id()] + "')");
+                    $("#carta2 .back").css("background-size", "cover");
+                    $("#carta2").show();
 
-        $("#carta1").addClass("flipped");
-        $("#carta2").addClass("flipped");
-    },
+                    //stage.destroy();
+                    $("#container").hide();
 
-  easing: Kinetic.Easings.EaseInOut
-});
+                    $("#carta1").toggleClass("flipped");
 
+                    $("#carta2").delay(1000).toggleClass("flipped");
 
-tween2.play();
+                },
 
+                easing: Kinetic.Easings.EaseInOut
+            });
+
+            tween2.play();
 
 }
+
 
 //**************************************************
 //Pone la baraja en la mesa con las cartas barajadas
 
 function Inicializa_mesa(images) {
 
+    if (stage){
+         stage.destroy();
+    }
+                   
     var lastcarta;
     var eleccion_activa;
     var last_pos_y;
@@ -325,6 +327,10 @@ function Inicializa_mesa(images) {
                         eleccion_activa = carta_escogida2;
                     } else {
                         eleccion_activa = undefined;
+                        $("#info").show();
+                            group_baraja.visible(false);
+
+                            Loadimages(Muestra_cartas);
                     }
 
                     rectangle.setDraggable(false);
@@ -436,32 +442,52 @@ function Inicializa_mesa(images) {
 
 }
 
+//********************************************
+//funciones de la página para mostrar la baraja
+  function DesplazaCartaIzquierda(event) {
 
+      baraja.push(baraja.shift());
+      definiciones_arcanos.push(definiciones_arcanos.shift());
+      $("#carta-baraja").attr('src', baraja[0]);
+      $("#explicacion-arcano").html(definiciones_arcanos[0]);
+
+  }
+
+  function DesplazaCartaDerecha(event) {
+
+      baraja.unshift(baraja.pop());
+      definiciones_arcanos.unshift(definiciones_arcanos.pop());
+
+      $("#carta-baraja").attr('src', baraja[0]);
+      $("#explicacion-arcano").html(definiciones_arcanos[0]);
+  }
+
+  //funciones de la página para mostrar la baraja
 
 $(document).ready(function() {
-
+    $("#info").hide();
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
     Loadimages(Inicializa_mesa);
     $("#reset").click(function() {
-        $("#container").css("z-index", "1001");
-        $("#carta1").css("visibility", "hidden");
-        $("#carta2").css("visibility", "hidden");
-        $("#carta1").removeClass("flipped");
-        $("#carta2").removeClass("flipped");
 
-        
-        if(!$("carta2").hasClass("flipped")){
+        $("#carta1").toggleClass("flipped").hide();
+        $("#carta2").toggleClass("flipped").hide();
+
+        $("#container").show();
             Loadimages(Inicializa_mesa);
-        }
     });
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
         Loadimages(Muestra_cartas);
-
-    
-    //stage.destroy();
     });
 
+    //pagina para mostrar la baraja
+    $("#carta-baraja").on("swipeleft", DesplazaCartaIzquierda);
+    $("#carta-baraja").on("swiperight", DesplazaCartaDerecha);
+    //pagina para mostrar la baraja
 
 });
+
+
+

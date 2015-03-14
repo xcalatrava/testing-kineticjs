@@ -7,9 +7,9 @@
   <script src="js/jquery.js"></script>
   <script src="js/jquerymobile.js"></script>
   <script src="js/kinetic.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/KineticPlugin.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script> 
+<!--     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/KineticPlugin.min.js"></script>
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script> --> 
   <script src="js/script.js"></script>
 
   <!-- stylesheets -->
@@ -22,18 +22,49 @@
 
 <body>
   <!--  Page - Home -->
+    <!-- Página principal -->
     <section data-role="page" id="home">
-        
-        <header data-theme="b" data-role="header" data-position="fixed">
-            <h1>header</h1>
-            <a href="#" class="ui-btn-left ui-btn ui-btn-inline
-          ui-btn-icon-notext ui-mini ui-corner-all
-            ui-icon-home" id="reset">reset</a>
-            <a href="#" class="ui-btn-right ui-btn ui-btn-inline
-          ui-btn-icon-notext ui-mini ui-corner-all
-          ui-icon-info" id="info">Info</a>
-        </header>
-        <!-- header -->
+        <!--  <article role="main" class="ui-content"> -->
+              <div data-role="controlgroup">
+                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b">Baraja</a>
+                  <a href="#tirada" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b">Tirada de Tarot</a>
+              </div>
+    <!--  -->
+    </section>    
+    <!-- Página principal -->
+
+
+    <!-- Página Baraja -->
+<section data-role="page" id="baraja" data-theme="b">
+
+  <article role="main" class="ui-content">
+
+        <img id="carta-baraja" src="images/00.jpg">
+    </article>
+    <div data-role="popup" id="explicacion-arcano"></div>
+
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" data-icon="home">Incio</a>
+                </li>
+                <li><a href="#explicacion-arcano" data-icon="home" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Basic Popup</a>
+                </li>
+                <li><a href="#" data-icon="gear">Setup</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /navbar -->
+    </div>
+    <!-- /footer -->
+</section>    <!-- Página Baraja -->
+
+
+
+
+
+
+    <section data-role="page" id="tirada">
 
         <article role="main" class="ui-content container">
             <div id="container"></div>
@@ -46,23 +77,24 @@
               <figure class="front"></figure>
               <figure class="back"></figure>
             </div>
-
- 
         </article>
         <!-- content -->
-
-
+        <div data-role="popup" id="interpretacion"></div>
 
         <footer data-theme="b" data-role="footer" data-position="fixed">
-            <h1>footer</h1>
+          <nav data-role="navbar">
+            <ul>
+              <li><a href="#home" class="ui-btn ui-icon-video ui-btn-icon-top">Home</a></li>
+              <li><a href="#Interpretacion" class="ui-btn ui-icon-info ui-btn-icon-top">Interpretación</a></li>
+              <li><a href="#reset" id="reset" class="ui-btn ui-icon-back ui-btn-icon-top">Otra vez</a></li>
+              <li><a href="#ayuda" class="ui-btn ui-icon-help ui-btn-icon-top">Ayuda</a></li>
+              </ul>
+            </nav>
         </footer>
         <!-- footer -->
+
     </section>
     <!-- home -->
-
-
-
-
 
 </body>
 

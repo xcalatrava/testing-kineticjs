@@ -1,7 +1,32 @@
 #home {
-  /*background: url('../images/02.jpg')*/
+  background: url('../images/fondo_home.jpg');
+  background-size: cover;
 }
 
+
+#home .ui-controlgroup {
+  width: 60%;
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+#baraja {
+  background: url('../images/fondo_baraja.jpg');
+  background-size: cover;
+}
+
+#tirada {
+  background: url('../images/fondo_tirada.jpg');
+  background-size: cover;
+}
+
+
+#carta-baraja{
+    width: 75%;
+	margin: 10% auto;
+
+	display:block;
+}
 
 
     .card {
