@@ -61,15 +61,15 @@ function shuffleArray(array) {
 }
 
 function isNearOutline(carta, carta_escogida) {
-    var a = carta;
-    var o = carta_escogida;
-    var ax = a.getX()-50;
-    var ay = a.getY()+81;
+    var o = carta;
+    var a = carta_escogida;
+    var ax = a.getX()+ a.width()/2;
+    var ay = a.getY()- a.height()/2;
     var ox = o.getX();
     var oy = o.getY();
 
-    if (Math.abs(ax - ox) < 50 && Math.abs(ay - oy) < 50) {
-        $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
+    if (Math.abs(ax - ox) < 100 && Math.abs(ay - oy) < 163) {
+        // $("footer h1").html(a.attrs.id + " en " + o.attrs.name);
         return true;
     } else {
         return false;
@@ -163,11 +163,13 @@ function Muestra_cartas(images) {
                     $("#carta2").show();
 
                     //stage.destroy();
-                    $("#container").hide();
+                    $("#container").hide(0,function(){
+                        $("#carta1").addClass("flipped");
+                        $("#carta2").addClass("flipped");
 
-                    $("#carta1").toggleClass("flipped");
+                    });
 
-                    $("#carta2").delay(1000).toggleClass("flipped");
+
 
                 },
 
@@ -187,7 +189,7 @@ function Inicializa_mesa(images) {
     if (stage){
          stage.destroy();
     }
-                   
+    $("#container").show();               
     var lastcarta;
     var eleccion_activa;
     var last_pos_y;
@@ -327,9 +329,8 @@ function Inicializa_mesa(images) {
                         eleccion_activa = carta_escogida2;
                     } else {
                         eleccion_activa = undefined;
-                        $("#info").show();
+                        
                             group_baraja.visible(false);
-
                             Loadimages(Muestra_cartas);
                     }
 
@@ -448,7 +449,9 @@ function Inicializa_mesa(images) {
 
       baraja.push(baraja.shift());
       definiciones_arcanos.push(definiciones_arcanos.shift());
-      $("#carta-baraja").attr('src', baraja[0]);
+      $("#carta-baraja").fadeOut(500,function(){
+            $("#carta-baraja").attr('src', baraja[0]);
+      }).fadeIn(500);
       $("#explicacion-arcano").html(definiciones_arcanos[0]);
 
   }
@@ -458,23 +461,78 @@ function Inicializa_mesa(images) {
       baraja.unshift(baraja.pop());
       definiciones_arcanos.unshift(definiciones_arcanos.pop());
 
-      $("#carta-baraja").attr('src', baraja[0]);
+      $("#carta-baraja").fadeOut(500,function(){
+            $("#carta-baraja").attr('src', baraja[0]);
+      }).fadeIn(500);
       $("#explicacion-arcano").html(definiciones_arcanos[0]);
   }
+
+
+
+//   $( document ).on( "mobileinit" , function () {
+
+// $(document).on("pagecontainershow", function () {
+// var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+
+// var activePageId = activePage[0].id;
+// switch (activePageId) {
+//     case 'tirada':
+//     // var current = $(".ui-page-active").attr('id');
+//         console.log("current" + activePageId);
+//             Loadimages(Inicializa_mesa);
+//         break;
+//     }
+// });
+// });
+
+
+
+
 
   //funciones de la página para mostrar la baraja
 
 $(document).ready(function() {
-    $("#info").hide();
+    // $("#info").hide();
+    // screen.lockOrientation('portrait');
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
-    Loadimages(Inicializa_mesa);
+
+
+    $(document).on("pagecontainershow", function() {
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+
+        var activePageId = activePage[0].id;
+        switch (activePageId) {
+            case 'tirada':
+                // var current = $(".ui-page-active").attr('id');
+                console.log("current" + activePageId);
+                $("#carta1").hide(1000,function(){
+                            $("#carta1").removeClass("flipped");
+                            $("#carta2").hide(1000,function(){
+                                $("#carta2").removeClass("flipped");
+                                // $("#container").show();
+                                Loadimages(Inicializa_mesa);
+                            });
+
+                });
+                break;
+        }
+    });
+
+
     $("#reset").click(function() {
 
-        $("#carta1").toggleClass("flipped").hide();
-        $("#carta2").toggleClass("flipped").hide();
+        $("#carta1").hide(1000,function(){
+                    $("#carta1").removeClass("flipped");
+                    $("#carta2").hide(1000,function(){
+                        $("#carta2").removeClass("flipped");
 
-        $("#container").show();
-            Loadimages(Inicializa_mesa);
+                        Loadimages(Inicializa_mesa);
+                    });
+
+        });
+
+
+
     });
 
     //al pulsar info revela las cartas escogidas
