@@ -287,7 +287,7 @@ function Inicializa_mesa(images) {
             })
             rectangle.on('dragmove', function() {
                 var posicion = stage.getPointerPosition();
-                if (rectangle.getY() > (rectangle.attrs.oy + 100)) {
+                if (rectangle.getY() > (rectangle.attrs.oy + 30)) {
                     rectangle.rotation(0);
                     rectangle.setPosition({
                         x: posicion.x - 25,

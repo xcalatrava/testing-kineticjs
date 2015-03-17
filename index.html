@@ -28,8 +28,8 @@
  
         <article role="main" class="ui-content">
               <div data-role="controlgroup">
-                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b">Baraja</a>
-                  <a href="#tirada" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b">Tirada de Tarot</a>
+                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b portada">Baraja</a>
+                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b portada">Tirada de Tarot</a>
               </div>
         </article>
     <!--  -->
@@ -46,14 +46,14 @@
     </article>
     <div data-role="popup" id="explicacion-arcano"></div>
 
-    <div data-role="footer" data-position="fixed">
+    <footer data-theme="b" data-role="footer" data-position="fixed" >
         <div data-role="navbar">
             <ul>
-                <li><a href="#home" data-icon="home">Incio</a>
+                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Inicio</a>
                 </li>
-                <li><a href="#explicacion-arcano" data-icon="home" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Basic Popup</a>
+                <li><a href="#explicacion-arcano" class="ui-btn ui-icon-info ui-btn-icon-top" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Significado</a>
                 </li>
-                <li><a href="#" data-icon="gear">Setup</a>
+                <li><a href="#" class="ui-btn ui-icon-shop ui-btn-icon-top">Comprar baraja</a>
                 </li>
             </ul>
         </div>
@@ -62,10 +62,44 @@
     <!-- /footer -->
 </section>    <!-- Página Baraja -->
 
+<!-- Pagina de explicación y de selección del contexto -->
+
+<section id="instrucciones" data-role="page">
+  <article class="ui-content">
+    <p>Tómate un momento para pensar en la pregunta que quieres hacer.</p>
+    <p>Recuerda hacer preguntas del estilo a: "Como me irá si...?".</p>
+    <p>Haciendo esta pregunta tú eres el responsable de tus decisiones, y el Tarot solo te da información.</p>
+    <p>Si necesitas ayuda en como formular la pregunta pulsa aquí.</p>
+    <p>Cuando tengas clara la pregunta escoge el contexto y pulsa en hacer tirada.</p>
+
+
+
+    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+        <legend>Contexto:</legend>
+        <input type="radio" name="seleccion" id="sel_amor" value="amor">
+        <label for="sel_amor">Amor</label>
+        <input type="radio" name="seleccion" id="sel_dinero" value="dinero">
+        <label for="sel_dinero">Dinero</label>
+
+    </fieldset>
 
 
 
 
+
+  <footer data-theme="b" data-role="footer" data-position="fixed" >
+          <nav data-role="navbar">
+            <ul>
+              <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
+              <li><a href="#tirada" class="ui-btn ui-icon-info ui-btn-icon-top">Tirada</a></li>
+              </ul>
+            </nav>
+        </footer>
+  </article>
+</section>
+
+
+<!-- Pagina de selección de las cartas -->
 
     <section data-role="page" id="tirada">
 
@@ -80,17 +114,18 @@
               <figure class="front"></figure>
               <figure class="back"></figure>
             </div>
+			
         </article>
         <!-- content -->
         <div data-role="popup" id="interpretacion"></div>
 
-        <footer data-theme="b" data-role="footer" data-position="fixed">
+        <footer data-theme="b" data-role="footer" data-position="fixed" >
           <nav data-role="navbar">
             <ul>
-              <li><a href="#home" class="ui-btn ui-icon-video ui-btn-icon-top">Home</a></li>
+              <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
               <li><a href="#Interpretacion" class="ui-btn ui-icon-info ui-btn-icon-top">Interpretación</a></li>
-              <li><a href="#reset" id="reset" class="ui-btn ui-icon-back ui-btn-icon-top">Otra vez</a></li>
-              <li><a href="#ayuda" class="ui-btn ui-icon-help ui-btn-icon-top">Ayuda</a></li>
+              <li><a href="#reset" id="reset" class="ui-btn ui-icon-recycle ui-btn-icon-top">Otra vez</a></li>
+              <li><a href="#ayuda" class="ui-btn ui-icon-comment ui-btn-icon-top">Ayuda</a></li>
               </ul>
             </nav>
         </footer>
