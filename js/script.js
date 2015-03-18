@@ -1,3 +1,4 @@
+var contexto;
 var stage;
 var layer;
 var group_baraja;
@@ -495,45 +496,39 @@ $(document).ready(function() {
     // $("#info").hide();
     // screen.lockOrientation('portrait');
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
-
-
-    $(document).on("pagecontainershow", function() {
+    $(document).on("pagecontainerbeforeshow", function(){
         var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
-
         var activePageId = activePage[0].id;
         switch (activePageId) {
             case 'tirada':
                 // var current = $(".ui-page-active").attr('id');
                 console.log("current" + activePageId);
-                $("#carta1").hide(1000,function(){
-                            $("#carta1").removeClass("flipped");
-                            $("#carta2").hide(1000,function(){
-                                $("#carta2").removeClass("flipped");
-                                // $("#container").show();
-                                Loadimages(Inicializa_mesa);
-                            });
+                $("#carta1").hide();
+                $("#carta1").removeClass("flipped");
+                $("#carta2").hide();
+                $("#carta2").removeClass("flipped");
 
-                });
+
                 break;
         }
-    });
+
+    })
+    $(document).on("pagecontainershow", function(){
+        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
+        var activePageId = activePage[0].id;
+        switch (activePageId) {
+            case 'tirada':
+                // var current = $(".ui-page-active").attr('id');
+                console.log("current" + activePageId);
+
+                Loadimages(Inicializa_mesa);
+
+                break;
+        }
+
+    })
 
 
-    $("#reset").click(function() {
-
-        $("#carta1").hide(1000,function(){
-                    $("#carta1").removeClass("flipped");
-                    $("#carta2").hide(1000,function(){
-                        $("#carta2").removeClass("flipped");
-
-                        Loadimages(Inicializa_mesa);
-                    });
-
-        });
-
-
-
-    });
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
@@ -544,6 +539,14 @@ $(document).ready(function() {
     $("#carta-baraja").on("swipeleft", DesplazaCartaIzquierda);
     $("#carta-baraja").on("swiperight", DesplazaCartaDerecha);
     //pagina para mostrar la baraja
+
+    $("#heart").click(function(){
+        contexto = 1;
+    });
+
+    $("#gold").click(function(){
+        contexto = 2;
+    });
 
 });
 

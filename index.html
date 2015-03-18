@@ -27,9 +27,9 @@
     <section data-role="page" id="home">
  
         <article role="main" class="ui-content">
-              <div data-role="controlgroup">
-                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b portada">Baraja</a>
-                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b portada">Tirada de Tarot</a>
+              <div data-role="controlgroup" class="portada">
+                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b">Baraja</a>
+                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b">Tirada de Tarot</a>
               </div>
         </article>
     <!--  -->
@@ -44,7 +44,7 @@
 
         <img id="carta-baraja" src="images/00.jpg">
     </article>
-    <div data-role="popup" id="explicacion-arcano"></div>
+    <div data-role="popup" id="explicacion-arcano"><h1 style='text-align:center; font-size: 20px'>EL LOCO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p></div>
 
     <footer data-theme="b" data-role="footer" data-position="fixed" >
         <div data-role="navbar">
@@ -70,18 +70,14 @@
     <p>Recuerda hacer preguntas del estilo a: "Como me irá si...?".</p>
     <p>Haciendo esta pregunta tú eres el responsable de tus decisiones, y el Tarot solo te da información.</p>
     <p>Si necesitas ayuda en como formular la pregunta pulsa aquí.</p>
-    <p>Cuando tengas clara la pregunta escoge el contexto y pulsa en hacer tirada.</p>
+    <p>Cuando estes list@ escoge el contexto.</p>
 
 
 
-    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-        <legend>Contexto:</legend>
-        <input type="radio" name="seleccion" id="sel_amor" value="amor">
-        <label for="sel_amor">Amor</label>
-        <input type="radio" name="seleccion" id="sel_dinero" value="dinero">
-        <label for="sel_dinero">Dinero</label>
-
-    </fieldset>
+    <div id="contexto">
+    <a href="#tirada" id="heart" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/heart.png"></a>
+<a href="#tirada" id="gold" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/gold.png"></a>
+</div>
 
 
 
@@ -117,14 +113,14 @@
 			
         </article>
         <!-- content -->
-        <div data-role="popup" id="interpretacion"></div>
+        <div data-role="popup" id="interpretacion"><h1 style='text-align:center; font-size: 20px'>EL MAGO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p></div>
 
         <footer data-theme="b" data-role="footer" data-position="fixed" >
           <nav data-role="navbar">
             <ul>
               <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
-              <li><a href="#Interpretacion" class="ui-btn ui-icon-info ui-btn-icon-top">Interpretación</a></li>
-              <li><a href="#reset" id="reset" class="ui-btn ui-icon-recycle ui-btn-icon-top">Otra vez</a></li>
+              <li><a href="#Interpretacion" class="ui-btn ui-icon-info ui-btn-icon-top" data-rel="popup" data-transition="pop" >Interpretación</a></li>
+              <li><a href="#instrucciones" id="reset" class="ui-btn ui-icon-recycle ui-btn-icon-top">Otra vez</a></li>
               <li><a href="#ayuda" class="ui-btn ui-icon-comment ui-btn-icon-top">Ayuda</a></li>
               </ul>
             </nav>

@@ -116,26 +116,11 @@
 }
 
 .portada{
+	box-shadow: 10px 10px 10px 10px hsla(225, 100%, 65%, 0.7)
+}
 
-	-webkit-border-top-right-radius: 25px;
-	-webkit-border-bottom-right-radius: 25px;
-	-moz-border-radius-topright: 25px;
-	-moz-border-radius-bottomright: 25px;
-	border-top-right-radius: 25px;
-	border-bottom-right-radius: 25px;
-    width: -moz-fit-content;
-    width: -webkit-fit-content;
-    width: fit-content;
-	text-align: left;
 
-  text-decoration:none; 
-      text-shadow: 0 0 10px #fff,
-               0 0 20px #fff,
-               0 0 30px #fff,
-               0 0 40px #ff00de,
-               0 0 70px #ff00de,
-               0 0 80px #ff00de,
-               0 0 100px #ff00de,
-               0 0 150px #ff00de;
-  }
+#contexto{
+	text-align: center;
+
 }
