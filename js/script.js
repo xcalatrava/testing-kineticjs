@@ -5,51 +5,52 @@ var group_baraja;
 var group_escogidas;
 var container_h;
 var container_w;
-    var sources = {
-        reverso: '/images/Reverso.jpg',
-        carta1: '/images/01.jpg',
-        carta2: '/images/02.jpg',
-        carta3: '/images/03.jpg',
-        carta4: '/images/04.jpg',
-        carta5: '/images/05.jpg',
-        carta6: '/images/06.jpg',
-        carta7: '/images/07.jpg',
-        carta8: '/images/08.jpg',
-        carta9: '/images/09.jpg',
-        carta10: '/images/10.jpg',
-        carta11: '/images/11.jpg',
-        carta12: '/images/12.jpg',
-        carta13: '/images/13.jpg',
-        carta14: '/images/14.jpg',
-        carta15: '/images/15.jpg',
-        carta16: '/images/16.jpg',
-        carta17: '/images/17.jpg',
-        carta18: '/images/18.jpg',
-        carta19: '/images/19.jpg',
-        carta20: '/images/20.jpg',
-        carta21: '/images/21.jpg',        
-        carta1r: '/images/01r.jpg',
-        carta2r: '/images/02r.jpg',
-        carta3r: '/images/03r.jpg',
-        carta4r: '/images/04r.jpg',
-        carta5r: '/images/05r.jpg',
-        carta6r: '/images/06r.jpg',
-        carta7r: '/images/07r.jpg',
-        carta8r: '/images/08r.jpg',
-        carta9r: '/images/09r.jpg',
-        carta10r: '/images/10r.jpg',
-        carta11r: '/images/11r.jpg',
-        carta12r: '/images/12r.jpg',
-        carta13r: '/images/13r.jpg',
-        carta14r: '/images/14r.jpg',
-        carta15r: '/images/15r.jpg',
-        carta16r: '/images/16r.jpg',
-        carta17r: '/images/17r.jpg',
-        carta18r: '/images/18r.jpg',
-        carta19r: '/images/19r.jpg',
-        carta20r: '/images/20r.jpg',
-        carta21r: '/images/21r.jpg',
-    };
+var sources = {
+    reverso: '/images/Reverso.jpg',
+    carta1: '/images/01.jpg',
+    carta2: '/images/02.jpg',
+    carta3: '/images/03.jpg',
+    carta4: '/images/04.jpg',
+    carta5: '/images/05.jpg',
+    carta6: '/images/06.jpg',
+    carta7: '/images/07.jpg',
+    carta8: '/images/08.jpg',
+    carta9: '/images/09.jpg',
+    carta10: '/images/10.jpg',
+    carta11: '/images/11.jpg',
+    carta12: '/images/12.jpg',
+    carta13: '/images/13.jpg',
+    carta14: '/images/14.jpg',
+    carta15: '/images/15.jpg',
+    carta16: '/images/16.jpg',
+    carta17: '/images/17.jpg',
+    carta18: '/images/18.jpg',
+    carta19: '/images/19.jpg',
+    carta20: '/images/20.jpg',
+    carta21: '/images/21.jpg',
+    carta1r: '/images/01r.jpg',
+    carta2r: '/images/02r.jpg',
+    carta3r: '/images/03r.jpg',
+    carta4r: '/images/04r.jpg',
+    carta5r: '/images/05r.jpg',
+    carta6r: '/images/06r.jpg',
+    carta7r: '/images/07r.jpg',
+    carta8r: '/images/08r.jpg',
+    carta9r: '/images/09r.jpg',
+    carta10r: '/images/10r.jpg',
+    carta11r: '/images/11r.jpg',
+    carta12r: '/images/12r.jpg',
+    carta13r: '/images/13r.jpg',
+    carta14r: '/images/14r.jpg',
+    carta15r: '/images/15r.jpg',
+    carta16r: '/images/16r.jpg',
+    carta17r: '/images/17r.jpg',
+    carta18r: '/images/18r.jpg',
+    carta19r: '/images/19r.jpg',
+    carta20r: '/images/20r.jpg',
+    carta21r: '/images/21r.jpg',
+};
+
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -179,6 +180,36 @@ function Muestra_cartas(images) {
 
             tween2.play();
 
+}
+
+function Interpreta(){
+    $("#carta1").animate({
+        left: ($(".container").width()-220)/2,
+        top: 10,
+        width: 100,
+        height: 163
+    },500);    
+    $("#carta2").animate({
+        left: $("#carta1").css("left") + 100 + 20,
+        top: 10,
+        width: 100,
+        height: 163
+    },500);
+
+    // $("#carta1").css("left", ($(".container").width()-220)/2);
+    // $("#carta1").css("top", "3%");
+    // $("#carta1").css("width", "100");
+    // $("#carta1").css("height", "163");
+    // $("#carta2").css("left", $("#carta1").css("left") + 100 + 20);
+    // $("#carta2").css("top", "3%");
+    // $("#carta2").css("width", "100");
+    // $("#carta2").css("height", "163");
+    $("#interpretacion").css("margin-top", "1000px");
+    $("#interpretacion").show();
+    $("#interpretacion").animate({
+        "margin-top": 178
+    },500);
+    // $("#interpretacion").css("margin-top",parseInt($("#carta1").css("top")) + 168)
 }
 
 
@@ -507,7 +538,8 @@ $(document).ready(function() {
                 $("#carta1").removeClass("flipped");
                 $("#carta2").hide();
                 $("#carta2").removeClass("flipped");
-
+                $("#interpretacion").hide();
+                $("#interpretacion").css("margin-top", "0px");
 
                 break;
         }
@@ -546,6 +578,10 @@ $(document).ready(function() {
 
     $("#gold").click(function(){
         contexto = 2;
+    });
+
+    $("#Interpretacion").click(function(){
+        Interpreta();
     });
 
 });
