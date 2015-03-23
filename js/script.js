@@ -204,10 +204,10 @@ function Interpreta(){
     // $("#carta2").css("top", "3%");
     // $("#carta2").css("width", "100");
     // $("#carta2").css("height", "163");
-    $("#interpretacion").css("margin-top", "1000px");
+    $("#interpretacion").css("top", "1000px");
     $("#interpretacion").show();
     $("#interpretacion").animate({
-        "margin-top": 178
+        "top": 185
     },500);
     // $("#interpretacion").css("margin-top",parseInt($("#carta1").css("top")) + 168)
 }

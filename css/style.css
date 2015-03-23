@@ -122,5 +122,23 @@
 
 #contexto{
 	text-align: center;
+}
 
+#interpretacion{
+	top: 185px;
+	height: 60%;
+	padding: 10px;
+  overflow: scroll;
+  position: absolute;
+    background-color: #2a2a2a;
+  border-color: #1d1d1d;
+  color: #fff;
+  text-shadow: 0 1px 0 #111;
+  border-radius: .3125em;
+    margin-right: 15px;
+
+}
+
+.ui-content{
+	overflow: hidden;
 }
