@@ -142,3 +142,15 @@
 .ui-content{
 	overflow: hidden;
 }
+
+#explicacion-arcano-arcano {
+	text-decoration: underline;
+	text-align: center;
+	font: bold;
+}
+
+#interpretacion-titulo {
+	text-decoration: underline;
+	text-align: center;
+	font: bold;	
+}

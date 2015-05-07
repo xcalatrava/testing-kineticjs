@@ -149,6 +149,28 @@ function CreateTablesError (tx, error){
 
 }
 
+function Recupera_prediccion (){
+           localDB.transaction(function(tx) {            
+              tx.executeSql("SELECT * FROM predicciones WHERE combinacion = \'" + definicion + "\'", [], function(tx, results) {
+                if (results.rows.length > 0){
+                    prediccion_amor = results.rows.item(0).amor;
+                    prediccion_trabajo = results.rows.item(0).trabajo;
+                    if(contexto===1){
+                        $("#interpretacion-interpretacion").html(prediccion_amor);
+                        $("#interpretacion-contexto").html("Amor");
+                    }
+                    if(contexto===2){
+                        $("#interpretacion-interpretacion").html(prediccion_trabajo);
+                        $("#interpretacion-contexto").html("Trabajo");
+                    }
+                    
+                }
+
+              });
+            },CheckDBError);
+           
+}
+
 
 jQuery.extend({
     getResults: function(url) {
@@ -178,51 +200,10 @@ var group_baraja;
 var group_escogidas;
 var container_h;
 var container_w;
-var sources = {
-    reverso: '/images/Reverso.jpg',
-    carta1: '/images/01.jpg',
-    carta2: '/images/02.jpg',
-    carta3: '/images/03.jpg',
-    carta4: '/images/04.jpg',
-    carta5: '/images/05.jpg',
-    carta6: '/images/06.jpg',
-    carta7: '/images/07.jpg',
-    carta8: '/images/08.jpg',
-    carta9: '/images/09.jpg',
-    carta10: '/images/10.jpg',
-    carta11: '/images/11.jpg',
-    carta12: '/images/12.jpg',
-    carta13: '/images/13.jpg',
-    carta14: '/images/14.jpg',
-    carta15: '/images/15.jpg',
-    carta16: '/images/16.jpg',
-    carta17: '/images/17.jpg',
-    carta18: '/images/18.jpg',
-    carta19: '/images/19.jpg',
-    carta20: '/images/20.jpg',
-    carta21: '/images/21.jpg',
-    carta1r: '/images/01r.jpg',
-    carta2r: '/images/02r.jpg',
-    carta3r: '/images/03r.jpg',
-    carta4r: '/images/04r.jpg',
-    carta5r: '/images/05r.jpg',
-    carta6r: '/images/06r.jpg',
-    carta7r: '/images/07r.jpg',
-    carta8r: '/images/08r.jpg',
-    carta9r: '/images/09r.jpg',
-    carta10r: '/images/10r.jpg',
-    carta11r: '/images/11r.jpg',
-    carta12r: '/images/12r.jpg',
-    carta13r: '/images/13r.jpg',
-    carta14r: '/images/14r.jpg',
-    carta15r: '/images/15r.jpg',
-    carta16r: '/images/16r.jpg',
-    carta17r: '/images/17r.jpg',
-    carta18r: '/images/18r.jpg',
-    carta19r: '/images/19r.jpg',
-    carta20r: '/images/20r.jpg',
-    carta21r: '/images/21r.jpg',
-};
+var carta1, carta2;
+var definicion;
+var prediccion;
+
 
 
 function shuffleArray(array) {
@@ -282,6 +263,11 @@ function Muestra_cartas(images) {
     group_baraja.destroy();
 
     var cartas = group_escogidas.find('Image');
+
+    carta1 = cartas[0].getAttr('id').replace("carta", "");
+    carta2 = cartas[1].getAttr('id').replace("carta", "");
+
+    definicion = carta1 + "-" + carta2;
 
     group_baraja = cartas;
 
@@ -356,6 +342,9 @@ function Muestra_cartas(images) {
 }
 
 function Interpreta(){
+
+    Recupera_prediccion();
+
     $("#carta1").animate({
         left: ($(".container").width()-220)/2,
         top: 10,
@@ -369,14 +358,6 @@ function Interpreta(){
         height: 163
     },500);
 
-    // $("#carta1").css("left", ($(".container").width()-220)/2);
-    // $("#carta1").css("top", "3%");
-    // $("#carta1").css("width", "100");
-    // $("#carta1").css("height", "163");
-    // $("#carta2").css("left", $("#carta1").css("left") + 100 + 20);
-    // $("#carta2").css("top", "3%");
-    // $("#carta2").css("width", "100");
-    // $("#carta2").css("height", "163");
     $("#interpretacion").css("top", "1000px");
     $("#interpretacion").show();
     $("#interpretacion").animate({
@@ -709,6 +690,14 @@ $(document).ready(function() {
         var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
         var activePageId = activePage[0].id;
         switch (activePageId) {
+            case 'baraja':
+                $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
+                $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
+                $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
+                $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+
+                break;
+
             case 'tirada':
                 // var current = $(".ui-page-active").attr('id');
                 console.log("current" + activePageId);
@@ -738,10 +727,7 @@ $(document).ready(function() {
 
     })
 
-    $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
-    $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
-    $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
-    $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+
 
 
     //al pulsar info revela las cartas escogidas
@@ -767,6 +753,13 @@ $(document).ready(function() {
 
     $("#Interpretacion").click(function(){
         Interpreta();
+    });
+
+
+    $("#comprar_baraja").on("click", ".external", function (e) {
+        e.preventDefault();
+        var targetURL = $(this).attr("href");
+        window.open(targetURL, "_system");
     });
 
 });

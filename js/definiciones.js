@@ -21,55 +21,52 @@ var baraja = ["../images/00.jpg",
 					"../images/20.jpg",
 					"../images/21.jpg",
 				   ];
+var sources = {
+    reverso: '/images/Reverso.jpg',
+    carta1: '/images/01.jpg',
+    carta2: '/images/02.jpg',
+    carta3: '/images/03.jpg',
+    carta4: '/images/04.jpg',
+    carta5: '/images/05.jpg',
+    carta6: '/images/06.jpg',
+    carta7: '/images/07.jpg',
+    carta8: '/images/08.jpg',
+    carta9: '/images/09.jpg',
+    carta10: '/images/10.jpg',
+    carta11: '/images/11.jpg',
+    carta12: '/images/12.jpg',
+    carta13: '/images/13.jpg',
+    carta14: '/images/14.jpg',
+    carta15: '/images/15.jpg',
+    carta16: '/images/16.jpg',
+    carta17: '/images/17.jpg',
+    carta18: '/images/18.jpg',
+    carta19: '/images/19.jpg',
+    carta20: '/images/20.jpg',
+    carta21: '/images/21.jpg',
+    carta1r: '/images/01r.jpg',
+    carta2r: '/images/02r.jpg',
+    carta3r: '/images/03r.jpg',
+    carta4r: '/images/04r.jpg',
+    carta5r: '/images/05r.jpg',
+    carta6r: '/images/06r.jpg',
+    carta7r: '/images/07r.jpg',
+    carta8r: '/images/08r.jpg',
+    carta9r: '/images/09r.jpg',
+    carta10r: '/images/10r.jpg',
+    carta11r: '/images/11r.jpg',
+    carta12r: '/images/12r.jpg',
+    carta13r: '/images/13r.jpg',
+    carta14r: '/images/14r.jpg',
+    carta15r: '/images/15r.jpg',
+    carta16r: '/images/16r.jpg',
+    carta17r: '/images/17r.jpg',
+    carta18r: '/images/18r.jpg',
+    carta19r: '/images/19r.jpg',
+    carta20r: '/images/20r.jpg',
+    carta21r: '/images/21r.jpg',
+};
 
-// var definiciones_arcanos = [
-// 	"<h1 style='text-align:center; font-size: 20px'>EL LOCO</h1><h2>INMADUREZ. ESPONTANEIDAD. PLACER. AVENTURA. VIAJES LARGOS.</h2><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// "<h1 style='text-align:center; font-size: 20px'>EL MAGO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-
-// "<h1 style='text-align:center; font-size: 20px'>LA SACERDOTISA</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 	"<h1 style='text-align:center; font-size: 20px'>LA EMPERATRIZ</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 	"<h1 style='text-align:center; font-size: 20px'>EL EMPERADOR</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 	"<h1 style='text-align:center; font-size: 20px'>EL SUMO SACERDOTE</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LOS ENAMORADOS</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>EL CARRO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 	"<h1 style='text-align:center; font-size: 20px'>LA JUSTICIA</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>EL ERMITAÑO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA RUEDA DE LA FORTUNA</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA FUERZA</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>EL COLGADO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>TRANSFORMACION</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA TEMPLANZA</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>EL DIABLO</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA TORRE</h1><p>La figura que aparece es femenina. Llama la atención su atuendo de colores llamativos, lo que indica que su personalidad aún está por definir. No tiene miedo de adentrarse en un bosque desconocido, que representa el inicio a un futuro que todavía no tiene un rumbo definido. En sus manos está el camino de la superación. Ese viaje a lo desconocido le aportará las experiencias necesarias para su evolución.</p><p><mark>Significado:</mark> Inmadurez. Espontaneidad. Placer. Aventura. Viajes largos. Su letra hebrea es Tau. La nota musical asociada a esta figura es Mi –que armoniza el chakra 3 (plexo solar)–, y el color amarillo.</p><p>Carta que sugiere reforzar la concentración.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA ESTRELLA</h1><p>Un ángel anunciador llega para advertir que todo lo que está oculto será revelado y los engaños descubiertos. Es hora de empezar una nueva vida a partir de las lecciones del pasado. Si está dispuesto a admitir sus errores, resurgirá reforzado. Es el momento de renovar cualquier proyecto.</p><p><mark>Significado:</mark> Despertar. Juicio. Sentencia a favor. Su letra hebrea es Resh. La nota musical asociada a esta carta es Do –que armoniza el chakra 1 (raiz)–, y el color rojo.</p><p>Carta que refuerza acción y cambio.</p>",
-	
-// 		"<h1 style='text-align:center; font-size: 20px'>LA LUNA</h1><p>Un ángel anunciador llega para advertir que todo lo que está oculto será revelado y los engaños descubiertos. Es hora de empezar una nueva vida a partir de las lecciones del pasado. Si está dispuesto a admitir sus errores, resurgirá reforzado. Es el momento de renovar cualquier proyecto.</p><p><mark>Significado:</mark> Despertar. Juicio. Sentencia a favor. Su letra hebrea es Resh. La nota musical asociada a esta carta es Do –que armoniza el chakra 1 (raiz)–, y el color rojo.</p><p>Carta que refuerza acción y cambio.</p>",
-
-// 		"<h1 style='text-align:center; font-size: 20px'>EL SOL</h1><p>Un ángel anunciador llega para advertir que todo lo que está oculto será revelado y los engaños descubiertos. Es hora de empezar una nueva vida a partir de las lecciones del pasado. Si está dispuesto a admitir sus errores, resurgirá reforzado. Es el momento de renovar cualquier proyecto.</p><p><mark>Significado:</mark> Despertar. Juicio. Sentencia a favor. Su letra hebrea es Resh. La nota musical asociada a esta carta es Do –que armoniza el chakra 1 (raiz)–, y el color rojo.</p><p>Carta que refuerza acción y cambio.</p>",
-	
-// 	"<h1 style='text-align:center; font-size: 20px'>EL JUICIO</h1><p>Un ángel anunciador llega para advertir que todo lo que está oculto será revelado y los engaños descubiertos. Es hora de empezar una nueva vida a partir de las lecciones del pasado. Si está dispuesto a admitir sus errores, resurgirá reforzado. Es el momento de renovar cualquier proyecto.</p><p><mark>Significado:</mark> Despertar. Juicio. Sentencia a favor. Su letra hebrea es Resh. La nota musical asociada a esta carta es Do –que armoniza el chakra 1 (raiz)–, y el color rojo.</p><p>Carta que refuerza acción y cambio.</p>",
-	
-
-// 	"<h1 style='text-align:center; font-size: 20px'>EL MUNDO</h1><p>La mujer aparece acompañada de un hombre. Ambos se fusionan entre sí en un abrazo que simboliza la culminación, la plenitud de la energía generadora de triunfos. El Mundo es la finalización, el cumplimiento, el potencial, los resultados, las realizaciones, la integridad, el éxito, la totalidad… Simboliza también asuntos o viajes en el extranjero, el éxito al final de los proyectos y el logro de metas.</p><p><mark>Significado:</mark> Plenitud. Realización. Unión. Éxito. Cambio definitivo. Boda. Su letra hebrea es Shin. La nota musical asociada con esta carta es La –que armoniza el chakra 6 (frente)–, y el color índigo.</p>Carta que refuerza el significado de consumación."
-	
-// ];
 
 var definiciones_arcanos = [
 	["EL LOCO","INMADUREZ. ESPONTANEIDAD. PLACER. AVENTURA. VIAJES LARGOS.",
@@ -96,7 +93,9 @@ var definiciones_arcanos = [
 	["LA TORRE","","",""],
 	["LA ESTRELLA","","",""],
 	["LA LUNA","","",""],
-	["EL SOL","","",""],
+	["EL SOL","AMOR. LOGROS. ÉXITOS. AMISTAD. HOGAR. MATRIMONIO","Los rayos del Sol sobre las niñas transmiten alegría, equilibrio, felicidad. Otorgan fertilidad y abundancia. Esto tiene que ver con los cambios, los ciclos de la vida: nacimiento, vida, muerte y renacimiento. Esta es una carta feliz. Inspira despreocupación, “buenas vibraciones”. Trae uniones duraderas con mucho amor. El sol es el rey de todos los astros, y el que otorga éxito a todas las situaciones de la vida.",
+		"Amor. Logros. Éxitos. Amistad. Hogar. Matrimonio. Su letra hebrea es Qoph. La nota musical asociada a esta carta es Re –que armoniza el chakra 2 (sacro)–, y el color naranja.",
+		"Carta que refuerza el éxito en la consulta."],
 	["EL JUICIO","","",""],
 	["EL MUNDO","","",""],
 ];
@@ -105,7 +104,7 @@ var definiciones_arcanos = [
 
 
 var textos_dia =[
-	"El Loco: Hoy puedes tener un día algo movido. Tendrás la cabeza como despistada y, si vas a comenzar algo, piénsalo dos veces antes de hacerlo: puede que no sea oro todo lo que reluce, y cualquier movimiento podría ser un fracaso a la larga. Trabaja el chakra 3 (plexo solar), cantando el mantra RAM, para que el día fluya con armonía. Por la mañana de uno a cinco minutos, nunca por la noche. ",
+		"El Loco: Hoy puedes tener un día algo movido. Tendrás la cabeza como despistada y, si vas a comenzar algo, piénsalo dos veces antes de hacerlo: puede que no sea oro todo lo que reluce, y cualquier movimiento podría ser un fracaso a la larga. Trabaja el chakra 3 (plexo solar), cantando el mantra RAM, para que el día fluya con armonía. Por la mañana de uno a cinco minutos, nunca por la noche. ",
 	    "El Mago: Hoy se presenta un día con mucha fuerza interior. Aprovéchala para ser creativo en lo que hagas, pues eso puede darte la llave a otras cosas más adelante. Los que te conocen saben muy bien lo que vales, así que enséñales que aún puedes hacer más. Trabaja el chakra 3 (plexo solar), cantando el mantra RAM, para que el día fluya con armonía. Por la mañana de uno a cinco minutos, nunca de noche.",
     	"La Sacerdotisa: Hoy es un día que puedes aprender mucho de las cosas que te ocurran. Tu sentido común sabrá  como recogerlo para integrarlo más adelante. La paciencia jugará en tu contra, así que echa mano de tu serenidad para equilibrar la situación. Trabaja el chakra 5 (garganta), cantando el mantra HAM, para que el día fluya con armonía. Por la mañana de uno a cinco minutos, nunca de noche.",
         "La Emperatriz: Eres una persona muy intuitiva, y eso hará más fácil equilibrar a las personas que te rodean. Hoy eres tú quien maneja el día; no dejes que nadie lo haga por ti. Cree en tu gran fuerza interior, y ponla en práctica. Trabaja el chakra 4 (corazón), cantando el mantra YAM, para que el día fluya con armonía. Por la mañana de uno a cinco minutos, nunca de noche.",
