@@ -5,16 +5,36 @@
 
 
 #home .ui-controlgroup {
-  width: 70%;
+
   margin: 0 auto;
   max-width: 300px;
-  padding-top: 80%;
+  padding-top: 100%;
+  text-align: center;
+}
+
+#instrucciones .ui-content{
+  color: midnightblue;
+  text-shadow: none;
+font-size: 20px;
+}
+
+#instrucciones .ui-controlgroup{
+  margin: 0 auto;
+/*  max-width: 300px;*/
+  padding-top: 10%;
+  text-align: center;
 }
 
 #baraja {
   background: url('../images/fondo_baraja.jpg');
   background-size: cover;
 }
+
+#instrucciones {
+  background: url('../images/fondo_tirada_r.jpg');
+  background-size: cover;
+}
+
 
 #tirada {
   background: url('../images/fondo_tirada.jpg');
@@ -115,17 +135,25 @@
 	background-color: brown;
 }
 
-.portada{
-	box-shadow: 10px 10px 10px 10px hsla(225, 100%, 65%, 0.7)
+/*.ui-icon-baraja:after {
+    background-image: url("../images/deck.svg");
+    /* Make your icon fit */
+    background-size: 18px 18px;
 }
 
+/*.ui-icon-tirada:after {
+    background-image: url("../images/deck.svg");
+    /* Make your icon fit */
+    background-size: 18px 18px;
+}*/
+*/
 
 #contexto{
 	text-align: center;
 }
 
 #interpretacion{
-	top: 185px;
+	top: 55%;
 	height: 60%;
 	padding: 10px;
   overflow: scroll;

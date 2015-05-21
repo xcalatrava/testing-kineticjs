@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>jQuery Mobile Web Apps</title>
-  <!-- // <script src="phonegap.js"></script> -->
   <script src="js/jquery.js"></script>
   <script src="js/jquerymobile.js"></script>
   <script src="js/cjson.js"></script>
   <script src="js/kinetic.js"></script>
-  <script src="js/definiciones.js"></script>
-<!--     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/KineticPlugin.min.js"></script>
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script> --> 
+  <script src="js/definiciones.js"></script> 
   <script src="js/script.js"></script>
   <script type="text/javascript" language="javascript">
     onInit();
@@ -20,6 +16,7 @@
   <!-- stylesheets -->
   <link rel="stylesheet" href="css/jquerymobile.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auric-theme.min.css">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -30,19 +27,20 @@
     <!-- Página principal -->
     <section data-role="page" id="home">
  
-        <article role="main" class="ui-content">
-              <div data-role="controlgroup" class="portada">
-                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow-icon ui-btn-b">Baraja</a>
-                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow-icon ui-btn-b">Tirada de Tarot</a>
+        <!-- <article role="main" class="ui-content"> -->
+              <div data-role="controlgroup" data-type="horizontal">
+                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top">Baraja</a>
+                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-top">Tirada de Tarot</a>
               </div>
-        </article>
+
+        <!-- </article> -->
     <!--  -->
     </section>    
     <!-- Página principal -->
 
 
     <!-- Página Baraja -->
-<section data-role="page" id="baraja" data-theme="b">
+<section data-role="page" id="baraja">
 
   <article role="main" class="ui-content">
 
@@ -57,14 +55,14 @@
       <a href="index.html" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cerrar</a>
     </div>
 
-    <footer data-theme="b" data-role="footer" data-position="fixed" >
+    <footer data-role="footer" data-position="fixed" >
         <div data-role="navbar">
             <ul>
-                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Inicio</a>
+                <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Inicio</a>
                 </li>
-                <li><a href="#explicacion-arcano" id="significado" class="ui-btn ui-icon-info ui-btn-icon-top" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Significado</a>
+                <li><a href="#explicacion-arcano" id="significado" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Significado</a>
                 </li>
-                <li><a href="http://aurictarot.com/baraja/" id="compra_baraja" class="ui-btn ui-icon-shop ui-btn-icon-top">Comprar baraja</a>
+                <li><a href="http://aurictarot.com/baraja/" id="compra_baraja" class="ui-btn ui-shadow ui-icon-shop ui-btn-icon-top">Comprar baraja</a>
                 </li>
             </ul>
         </div>
@@ -76,6 +74,8 @@
 <!-- Pagina de explicación y de selección del contexto -->
 
 <section id="instrucciones" data-role="page">
+    <header data-role="header" data-position="fixed"><h1>Instrucciones</h1></header> 
+
   <article class="ui-content">
     <p>Tómate un momento para pensar en la pregunta que quieres hacer.</p>
     <p>Recuerda hacer preguntas del estilo a: "Como me irá si...?".</p>
@@ -85,20 +85,20 @@
 
 
 
-    <div id="contexto">
+<!--     <div id="contexto">
     <a href="#tirada" id="heart" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/heart.png"></a>
 <a href="#tirada" id="gold" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/gold.png"></a>
-</div>
+</div> -->
+              <div data-role="controlgroup" data-type="horizontal">
+                  <a href="#tirada" id="heart" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/heart.png"></a>
+                  <a href="#tirada" id="gold" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/gold.png"></a>
+              </div>
 
-
-
-
-
-  <footer data-theme="b" data-role="footer" data-position="fixed" >
+  <footer data-role="footer" data-position="fixed" >
           <nav data-role="navbar">
             <ul>
-              <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a></li>
-              <li><a href="#tirada" class="ui-btn ui-icon-info ui-btn-icon-top">Tirada</a></li>
+              <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Home</a></li>
+<!--               <li><a href="#tirada" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top">Tirada</a></li> -->
               </ul>
             </nav>
         </footer>
@@ -131,16 +131,16 @@
     <!-- content -->
 
 
-    <footer data-theme="b" data-role="footer" data-position="fixed">
+    <footer data-role="footer" data-position="fixed">
         <nav data-role="navbar">
             <ul>
-                <li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top">Home</a>
+                <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Home</a>
                 </li>
-                <li><a href="" id="Interpretacion" class="ui-btn ui-icon-info ui-btn-icon-top">Interpretación</a>
+<!--                 <li><a href="" id="Interpretacion" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top">Interpretación</a>
+                </li> -->
+                <li><a href="#instrucciones" id="reset" data-rel="back" class="ui-btn ui-shadow ui-icon-recycle ui-btn-icon-top">Otra vez</a>
                 </li>
-                <li><a href="#instrucciones" id="reset" class="ui-btn ui-icon-recycle ui-btn-icon-top">Otra vez</a>
-                </li>
-                <li><a href="#ayuda" class="ui-btn ui-icon-comment ui-btn-icon-top">Ayuda</a>
+                <li><a href="#ayuda" class="ui-btn ui-shadow ui-icon-comment ui-btn-icon-top">Ayuda</a>
                 </li>
             </ul>
         </nav>

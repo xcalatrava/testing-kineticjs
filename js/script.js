@@ -338,6 +338,7 @@ function Muestra_cartas(images) {
             });
 
             tween2.play();
+            setTimeout(Interpreta, 6000);
 
 }
 
@@ -361,7 +362,7 @@ function Interpreta(){
     $("#interpretacion").css("top", "1000px");
     $("#interpretacion").show();
     $("#interpretacion").animate({
-        "top": 185
+        "top": "55%"
     },500);
     // $("#interpretacion").css("margin-top",parseInt($("#carta1").css("top")) + 168)
 }
