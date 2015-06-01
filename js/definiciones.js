@@ -22,7 +22,7 @@ var baraja = ["../images/00.jpg",
 					"../images/21.jpg",
 				   ];
 var sources = {
-    reverso: '/images/Reverso.jpg',
+    reverso: '/images/Reverso.png',
     carta1: '/images/01.jpg',
     carta2: '/images/02.jpg',
     carta3: '/images/03.jpg',

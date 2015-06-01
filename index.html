@@ -7,6 +7,7 @@
   <script src="js/jquerymobile.js"></script>
   <script src="js/cjson.js"></script>
   <script src="js/kinetic.js"></script>
+  <script src="js/coverflow.min.js"></script>
   <script src="js/definiciones.js"></script> 
   <script src="js/script.js"></script>
   <script type="text/javascript" language="javascript">
@@ -17,6 +18,7 @@
   <link rel="stylesheet" href="css/jquerymobile.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auric-theme.min.css">
+  <link rel="stylesheet" href="css/coverflow.css" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -44,7 +46,20 @@
 
   <article role="main" class="ui-content">
 
-        <img id="carta-baraja" src="images/00.jpg">
+
+<!--         <img id="carta-baraja" src="images/00.jpg"> -->
+
+
+    <div id="coverflow">
+        <!-- these children will be part of the coverflow -->
+        <img src="images/00.jpg" />
+        <img src="images/00.jpg" />
+        <img src="images/00.jpg" />
+        <img src="images/00.jpg" />
+        <img src="images/00.jpg" />
+        <img src="images/00.jpg" />
+    </div>
+
     </article>
     <div data-role="popup" id="explicacion-arcano">
       <p id="explicacion-arcano-arcano"></p>
@@ -90,9 +105,10 @@
 <a href="#tirada" id="gold" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/gold.png"></a>
 </div> -->
               <div data-role="controlgroup" data-type="horizontal">
-                  <a href="#tirada" id="heart" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/heart.png"></a>
-                  <a href="#tirada" id="gold" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/gold.png"></a>
+                  <a href="#tirada" id="heart" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/heart.png"><p>Amor</p></a>
+                  <a href="#tirada" id="gold" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/gold.png"><p>Trabajo</p></a>
               </div>
+  </article>
 
   <footer data-role="footer" data-position="fixed" >
           <nav data-role="navbar">
@@ -102,7 +118,7 @@
               </ul>
             </nav>
         </footer>
-  </article>
+
 </section>
 
 

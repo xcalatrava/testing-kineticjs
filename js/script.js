@@ -346,17 +346,30 @@ function Interpreta(){
 
     Recupera_prediccion();
 
+    // $("#carta1").animate({
+    //     left: ($(".container").width()-220)/2,
+    //     top: 10,
+    //     width: 100,
+    //     height: 163
+    // },500);    
+    // $("#carta2").animate({
+    //     left: $("#carta1").css("left") + 100 + 20,
+    //     top: 10,
+    //     width: 100,
+    //     height: 163
+    // },500);
+
     $("#carta1").animate({
-        left: ($(".container").width()-220)/2,
-        top: 10,
-        width: 100,
-        height: 163
+        left: ($(".container").width()-285)/2,
+        top: "10%",
+        width: 100 * 1.5,
+        height: 163 * 1.5
     },500);    
     $("#carta2").animate({
-        left: $("#carta1").css("left") + 100 + 20,
-        top: 10,
-        width: 100,
-        height: 163
+        left: $("#carta1").css("left") + 150 + 20,
+        top: "10%",
+        width: 100 * 1.5,
+        height: 163 * 1.5
     },500);
 
     $("#interpretacion").css("top", "1000px");
@@ -416,8 +429,9 @@ function Inicializa_mesa(images) {
                 oy: -200 + Math.random() * 20,
                 width: 100,
                 height: 163,
-                stroke: 'black',
-                strokeWidth: 1,
+                // stroke: 'black',
+                // strokeWidth: 0,
+                cornerRadius: 5,
                 name: 'carta',
                 id: 'carta' + lista[n-1],
                 escogida: false,
@@ -555,6 +569,7 @@ function Inicializa_mesa(images) {
         fill: 'blue',
         stroke: 'black',
         strokeWidth: 1,
+        cornerRadius: 5,
         name: 'carta_escogida1',
         draggable: false,
     })
@@ -573,7 +588,7 @@ function Inicializa_mesa(images) {
         },
         opacity: 0.5,
         lineCap: 'round',
-        cornerRadius: 3,
+        cornerRadius: 5,
         visible: false
     })
 
@@ -592,6 +607,7 @@ function Inicializa_mesa(images) {
         fill: 'blue',
         stroke: 'black',
         strokeWidth: 1,
+        cornerRadius: 5,
         name: 'carta_escogida2',
         draggable: false,       
     })
@@ -610,7 +626,7 @@ function Inicializa_mesa(images) {
         },
         opacity: 0.5,
         lineCap: 'round',
-        cornerRadius: 3,
+        cornerRadius: 5,
         visible: false
     })
 
@@ -636,13 +652,19 @@ function Inicializa_mesa(images) {
 
       baraja.push(baraja.shift());
       definiciones_arcanos.push(definiciones_arcanos.shift());
-      $("#carta-baraja").fadeOut(500,function(){
+      $("#carta-baraja").fadeOut(200,function(){
             $("#carta-baraja").attr('src', baraja[0]);
-      }).fadeIn(500);
-      $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
-      $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
-      $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
-      $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+      }).fadeIn(200);
+      // $("#carta-baraja").animate({ left: "-=500" }, 1000 );
+      //                   // .animate({ fontSize: "24px" }, 1000 )
+      //                   // .animate({ borderLeftWidth: "15px" }, 1000 );
+
+        $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
+                    $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
+                    $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
+                    $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+
+
 
   }
 
@@ -651,9 +673,9 @@ function Inicializa_mesa(images) {
       baraja.unshift(baraja.pop());
       definiciones_arcanos.unshift(definiciones_arcanos.pop());
 
-      $("#carta-baraja").fadeOut(500,function(){
+      $("#carta-baraja").fadeOut(200,function(){
             $("#carta-baraja").attr('src', baraja[0]);
-      }).fadeIn(500);
+      }).fadeIn(200);
       $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
       $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
       $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
@@ -684,6 +706,8 @@ function Inicializa_mesa(images) {
   //funciones de la página para mostrar la baraja
 
 $(document).ready(function() {
+
+
     // $("#info").hide();
     // screen.lockOrientation('portrait');
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
@@ -696,6 +720,7 @@ $(document).ready(function() {
                 $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
                 $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
                 $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+                    $("#coverflow").coverflow();
 
                 break;
 
@@ -717,6 +742,10 @@ $(document).ready(function() {
         var activePage = $.mobile.pageContainer.pagecontainer("getActivePage");
         var activePageId = activePage[0].id;
         switch (activePageId) {
+            case 'baraja':
+                $("#coverflow").coverflow();
+                break;
+                
             case 'tirada':
                 // var current = $(".ui-page-active").attr('id');
                 console.log("current" + activePageId);
@@ -729,7 +758,7 @@ $(document).ready(function() {
     })
 
 
-
+    $("#coverflow").coverflow();
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
@@ -764,6 +793,4 @@ $(document).ready(function() {
     });
 
 });
-
-
 

@@ -3,6 +3,9 @@
   background-size: cover;
 }
 
+#baraja article{
+  position: static;
+}
 
 #home .ui-controlgroup {
 
@@ -13,16 +16,32 @@
 }
 
 #instrucciones .ui-content{
-  color: midnightblue;
-  text-shadow: none;
+  color: white;
+  text-shadow: 2px 2px 2px #531E5C;
 font-size: 20px;
 }
 
 #instrucciones .ui-controlgroup{
   margin: 0 auto;
-/*  max-width: 300px;*/
-  padding-top: 10%;
+  width: 100%;
+  max-width: 300px;
+  padding-top: 5%;
   text-align: center;
+  margin: auto;
+}
+
+#instrucciones .ui-controlgroup-controls{
+  width: 100%;
+  text-align: center;
+}
+
+#heart{
+  width: 30%;
+}
+#gold{
+  width: 30%;
+
+
 }
 
 #baraja {
@@ -45,6 +64,8 @@ font-size: 20px;
 #carta-baraja{
     width: 75%;
 	margin: 10% auto;
+      border-radius: 25px;
+    border: 2px solid #8AC007;
 
 	display:block;
 }
@@ -76,7 +97,7 @@ font-size: 20px;
 	    /* -- transition is the magic sauce for animation -- */
 	    -webkit-transition: all 2s ease-in-out;
 	    transition: all 2s ease-in-out;
-	   	background: url("../images/reverso.jpg");
+	   	background: url("../images/Reverso.png");
 		background-size: cover;
     }
 
@@ -138,15 +159,15 @@ font-size: 20px;
 /*.ui-icon-baraja:after {
     background-image: url("../images/deck.svg");
     /* Make your icon fit */
-    background-size: 18px 18px;
+/*    background-size: 18px 18px;
 }
-
+*/
 /*.ui-icon-tirada:after {
     background-image: url("../images/deck.svg");
     /* Make your icon fit */
-    background-size: 18px 18px;
+/*    background-size: 18px 18px;
 }*/
-*/
+
 
 #contexto{
 	text-align: center;
@@ -158,12 +179,41 @@ font-size: 20px;
 	padding: 10px;
   overflow: scroll;
   position: absolute;
-    background-color: #2a2a2a;
+/*    background-color: #2a2a2a;
   border-color: #1d1d1d;
-  color: #fff;
-  text-shadow: 0 1px 0 #111;
-  border-radius: .3125em;
+  color: #fff;*/
+/*  text-shadow: 0 1px 0 #111;*/
+  /*border-radius: .3125em;*/
     margin-right: 15px;
+
+    background-clip: padding-box;
+background-color: rgb(199, 178, 153);
+border-bottom-color: rgb(109, 97, 84);
+border-bottom-left-radius: 9.60000038146973px;
+border-bottom-right-radius: 9.60000038146973px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(109, 97, 84);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(109, 97, 84);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(109, 97, 84);
+border-top-left-radius: 9.60000038146973px;
+border-top-right-radius: 9.60000038146973px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 12px 0px;
+color: rgb(0, 0, 0);
+display: block;
+font-family: sans-serif;
+font-size: 16px;
+
+line-height: 20.7999992370605px;
+
+text-shadow: rgb(238, 238, 238) 0px 1px 0px;
+
 
 }
 
