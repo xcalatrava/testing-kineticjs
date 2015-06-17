@@ -648,38 +648,39 @@ function Inicializa_mesa(images) {
 
 //********************************************
 //funciones de la página para mostrar la baraja
-  function DesplazaCartaIzquierda(event) {
+  // function DesplazaCartaIzquierda(event) {
 
-      baraja.push(baraja.shift());
-      definiciones_arcanos.push(definiciones_arcanos.shift());
-      $("#carta-baraja").fadeOut(200,function(){
-            $("#carta-baraja").attr('src', baraja[0]);
-      }).fadeIn(200);
-      // $("#carta-baraja").animate({ left: "-=500" }, 1000 );
-      //                   // .animate({ fontSize: "24px" }, 1000 )
-      //                   // .animate({ borderLeftWidth: "15px" }, 1000 );
+  //     baraja.push(baraja.shift());
+  //     definiciones_arcanos.push(definiciones_arcanos.shift());
+  //     $("#carta-baraja").fadeOut(200,function(){
+  //           $("#carta-baraja").attr('src', baraja[0]);
+  //     }).fadeIn(200);
+  //     // $("#carta-baraja").animate({ left: "-=500" }, 1000 );
+  //     //                   // .animate({ fontSize: "24px" }, 1000 )
+  //     //                   // .animate({ borderLeftWidth: "15px" }, 1000 );
 
-        $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
-                    $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
-                    $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
-                    $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
+  //       $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
+  //                   $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
+  //                   $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
+  //                   $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
 
 
 
-  }
+  // }
 
-  function DesplazaCartaDerecha(event) {
+  // function DesplazaCartaDerecha(event) {
 
-      baraja.unshift(baraja.pop());
-      definiciones_arcanos.unshift(definiciones_arcanos.pop());
+  //     baraja.unshift(baraja.pop());
+  //     definiciones_arcanos.unshift(definiciones_arcanos.pop());
 
-      $("#carta-baraja").fadeOut(200,function(){
-            $("#carta-baraja").attr('src', baraja[0]);
-      }).fadeIn(200);
-      $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
-      $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
-      $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
-      $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);  }
+  //     $("#carta-baraja").fadeOut(200,function(){
+  //           $("#carta-baraja").attr('src', baraja[0]);
+  //     }).fadeIn(200);
+  //     $("#explicacion-arcano-arcano").html(definiciones_arcanos[0][0]);
+  //     $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
+  //     $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
+  //     $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);  
+  // }
 
 
 
@@ -708,6 +709,9 @@ function Inicializa_mesa(images) {
 $(document).ready(function() {
 
 
+
+
+
     // $("#info").hide();
     // screen.lockOrientation('portrait');
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
@@ -720,7 +724,7 @@ $(document).ready(function() {
                 $("#explicacion-arcano-claves").html(definiciones_arcanos[0][1]);
                 $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
                 $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
-                    $("#coverflow").coverflow();
+
 
                 break;
 
@@ -743,7 +747,20 @@ $(document).ready(function() {
         var activePageId = activePage[0].id;
         switch (activePageId) {
             case 'baraja':
-                $("#coverflow").coverflow();
+                $("#coverflow").coverflow({
+                    active : 0,
+                    select : function( ev, ui ) {
+                        var el = ui.active;
+
+                        $("#explicacion-arcano-arcano").html(definiciones_arcanos[el.data('index')][0]);
+                        $("#explicacion-arcano-claves").html(definiciones_arcanos[el.data('index')][1]);
+                        $("#explicacion-arcano-explicacion").html(definiciones_arcanos[el.data('index')][2]);
+                        $("#explicacion-arcano-resumen").html(definiciones_arcanos[el.data('index')][3]);
+
+                    }
+                });
+
+
                 break;
                 
             case 'tirada':
@@ -758,7 +775,7 @@ $(document).ready(function() {
     })
 
 
-    $("#coverflow").coverflow();
+
 
     //al pulsar info revela las cartas escogidas
     $("#info").click(function() {
@@ -768,16 +785,16 @@ $(document).ready(function() {
     $("#significado").click(function() {
         $("#explicacion-arcano-arcano").text()
     });
-    //pagina para mostrar la baraja
-    $("#carta-baraja").on("swipeleft", DesplazaCartaIzquierda);
-    $("#carta-baraja").on("swiperight", DesplazaCartaDerecha);
-    //pagina para mostrar la baraja
+    // //pagina para mostrar la baraja
+    // $("#carta-baraja").on("swipeleft", DesplazaCartaIzquierda);
+    // $("#carta-baraja").on("swiperight", DesplazaCartaDerecha);
+    // //pagina para mostrar la baraja
 
-    $("#heart").click(function(){
+    $("#amor").click(function(){
         contexto = 1;
     });
 
-    $("#gold").click(function(){
+    $("#trabajo").click(function(){
         contexto = 2;
     });
 

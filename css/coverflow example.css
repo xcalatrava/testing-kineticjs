@@ -1,0 +1,108 @@
+html, body {
+    height: 99 %
+}
+body {
+    min - width: 320 px;
+    padding - top: 70 px
+}
+body# wrapper {
+    -webkit - box - sizing: border - box; - moz - box - sizing: border - box;
+    box - sizing: border - box;
+    min - height: 100 % ;
+    height: auto!important;
+    height: 100 % ;
+    padding - bottom: 60 px;
+    margin: 0 auto
+}
+body# wrapper nav {
+    min - height: 41 px
+}
+body# wrapper.lt - ie9.navbar.pull - right {
+    float: right
+}
+body# wrapper ul.checklist {
+    list - style: none;
+    padding - left: 0;
+    margin: 0 0 11 px
+}
+body# wrapper ul.checklist li {
+    position: relative;padding: .2e m 0.2e m 1.2e m;border - bottom: 1 px solid# eee
+}
+body# wrapper ul.checklist li: first - child {
+    border - top: 1 px solid# eee
+}
+body# wrapper ul.checklist li: before {
+        content: "✓";color: #696;display:table;position:absolute;top:50%;margin-top:-.5em;left:0;height:100%;width:1.2em;font-weight:700}body # wrapper.ui - coverflow - wrapper {
+            height: 480 px;overflow: hidden
+        }@
+        media only screen and(max - width: 320 px) {
+            body# wrapper.ui - coverflow - wrapper {
+                height: 200 px
+            }
+        }@
+        media only screen and(min - width: 321 px) and(max - width: 480 px) {
+            body# wrapper.ui - coverflow - wrapper {
+                height: 240 px
+            }
+        }@
+        media only screen and(min - width: 481 px) and(max - width: 767 px) {
+            body# wrapper.ui - coverflow - wrapper {
+                height: 280 px
+            }
+        }@
+        media only screen and(min - width: 768 px) and(max - width: 1024 px) {
+            body# wrapper.ui - coverflow - wrapper {
+                height: 360 px
+            }
+        }
+        body# wrapper.ui - coverflow - wrapper# coverflow {
+            min - height: 200 px;
+            max - height: 440 px
+        }
+        body# wrapper.ui - coverflow - wrapper# coverflow > img {
+            width: 400 px;height: 400 px
+        }@
+        media only screen and(max - width: 320 px) {
+            body# wrapper.ui - coverflow - wrapper# coverflow > img {
+                width: 160 px;height: 160 px
+            }
+        }@
+        media only screen and(min - width: 321 px) and(max - width: 480 px) {
+            body# wrapper.ui - coverflow - wrapper# coverflow > img {
+                width: 200 px;height: 200 px
+            }
+        }@
+        media only screen and(min - width: 481 px) and(max - width: 767 px) {
+            body# wrapper.ui - coverflow - wrapper# coverflow > img {
+                width: 240 px;height: 240 px
+            }
+        }@
+        media only screen and(min - width: 768 px) and(max - width: 1024 px) {
+            body# wrapper.ui - coverflow - wrapper# coverflow > img {
+                width: 320 px;height: 320 px
+            }
+        }
+        body# wrapper table.overview caption {
+            text - align: left;
+            font - weight: 700;
+            font - size: 1.1e m;
+            margin: .3e m 0.5e m
+        }
+        body# wrapper table.overview th,
+        body# wrapper table.overview td {
+            border - bottom: 1 px solid# eee;
+            padding: .2e m.5e m;
+            text - align: center
+        }
+        body# wrapper# license {
+            position: absolute;bottom: 0;left: 0;text - align: center;width: 100 % ;background: rgba(0, 0, 0, .8);padding - top: .4e m
+        }
+        body# wrapper# license * {
+            color: #fff
+        }
+        body.footer {
+            margin - top: -60 px;
+            border - top: 1 px solid# eee;
+            height: 60 px;
+            padding - top: .5e m
+        }

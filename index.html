@@ -5,7 +5,7 @@
   <title>jQuery Mobile Web Apps</title>
   <script src="js/jquery.js"></script>
   <script src="js/jquerymobile.js"></script>
-  <script src="js/cjson.js"></script>
+<!--   // <script src="js/cjson.js"></script> -->
   <script src="js/kinetic.js"></script>
   <script src="js/coverflow.min.js"></script>
   <script src="js/definiciones.js"></script> 
@@ -16,9 +16,9 @@
 
   <!-- stylesheets -->
   <link rel="stylesheet" href="css/jquerymobile.css">
-  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auric-theme.min.css">
   <link rel="stylesheet" href="css/coverflow.css" />
+  <link rel="stylesheet" href="css/style.css">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -31,8 +31,10 @@
  
         <!-- <article role="main" class="ui-content"> -->
               <div data-role="controlgroup" data-type="horizontal">
-                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow ui-corner-all ui-icon-grid ui-btn-icon-top">Baraja</a>
-                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-top">Tirada de Tarot</a>
+                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow ui-corner-all">
+                    <img src="images/icon-baraja.svg"></a>
+                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow ui-corner-all">
+                    <img src="images/icon-tirada.svg"></a>
               </div>
 
         <!-- </article> -->
@@ -43,34 +45,44 @@
 
     <!-- Página Baraja -->
 <section data-role="page" id="baraja">
-
-  <article role="main" class="ui-content">
-
-
-<!--         <img id="carta-baraja" src="images/00.jpg"> -->
-
-
-    <div id="coverflow">
-        <!-- these children will be part of the coverflow -->
-        <img src="images/00.jpg" />
-        <img src="images/00.jpg" />
-        <img src="images/00.jpg" />
-        <img src="images/00.jpg" />
-        <img src="images/00.jpg" />
-        <img src="images/00.jpg" />
-    </div>
-
+    <article role="main" class="ui-content">
+        <!--         <img id="carta-baraja" src="images/00.jpg"> -->
+        <div id="coverflow" class="wrapper">
+            <!-- these children will be part of the coverflow -->
+            <img src="images/00.jpg" data-index="0"/>
+            <img src="images/01.jpg" data-index="1"/>
+            <img src="images/02.jpg" data-index="2"/>
+            <img src="images/03.jpg" data-index="3"/>
+            <img src="images/04.jpg" data-index="4"/>
+            <img src="images/05.jpg" data-index="5"/>
+            <img src="images/06.jpg" data-index="6"/>
+            <img src="images/07.jpg" data-index="7"/>
+            <img src="images/08.jpg" data-index="8"/>
+            <img src="images/09.jpg" data-index="9"/>
+            <img src="images/10.jpg" data-index="10"/>
+            <img src="images/11.jpg" data-index="11"/>
+            <img src="images/12.jpg" data-index="12"/>
+            <img src="images/13.jpg" data-index="13"/>
+            <img src="images/14.jpg" data-index="14"/>
+            <img src="images/15.jpg" data-index="15"/>
+            <img src="images/16.jpg" data-index="16"/>
+            <img src="images/17.jpg" data-index="17"/>
+            <img src="images/18.jpg" data-index="18"/>
+            <img src="images/19.jpg" data-index="19"/>
+            <img src="images/20.jpg" data-index="20"/>
+            <img src="images/21.jpg" data-index="21"/>
+        </div>
     </article>
-    <div data-role="popup" id="explicacion-arcano">
-      <p id="explicacion-arcano-arcano"></p>
-      <p id="explicacion-arcano-claves"></p>
-      <p id="explicacion-arcano-explicacion"></p>
-      <p><mark>Significado</mark><span id="explicacion-arcano-significado"></span></p>
-      <p id="explicacion-arcano-resumen"></p>
-      <a href="index.html" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cerrar</a>
+    <div data-role="popup" id="explicacion-arcano" class="popup">
+        <p id="explicacion-arcano-arcano"></p>
+        <p id="explicacion-arcano-claves"></p>
+        <p id="explicacion-arcano-explicacion"></p>
+        <p>
+            <mark>Significado</mark><span id="explicacion-arcano-significado"></span></p>
+        <p id="explicacion-arcano-resumen"></p>
+        <a href="index.html" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cerrar</a>
     </div>
-
-    <footer data-role="footer" data-position="fixed" >
+    <footer data-role="footer" data-position="fixed">
         <div data-role="navbar">
             <ul>
                 <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Inicio</a>
@@ -82,14 +94,19 @@
             </ul>
         </div>
         <!-- /navbar -->
-    </div>
-    <!-- /footer -->
-</section>    <!-- Página Baraja -->
+        </div>
+        <!-- /footer -->
+</section>
+<!-- Página Baraja -->
+
 
 <!-- Pagina de explicación y de selección del contexto -->
 
 <section id="instrucciones" data-role="page">
-    <header data-role="header" data-position="fixed"><h1>Instrucciones</h1></header> 
+    <header data-role="header" data-position="fixed">
+        <a href="#home" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home"></a>
+      <h1>Instrucciones</h1>
+    </header> 
 
   <article class="ui-content">
     <p>Tómate un momento para pensar en la pregunta que quieres hacer.</p>
@@ -105,19 +122,21 @@
 <a href="#tirada" id="gold" class="ui-btn ui-shadow ui-corner-all ui-btn-inline"><img src="images/gold.png"></a>
 </div> -->
               <div data-role="controlgroup" data-type="horizontal">
-                  <a href="#tirada" id="heart" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/heart.png"><p>Amor</p></a>
-                  <a href="#tirada" id="gold" data-transition="slide" class="ui-btn ui-shadow ui-corner-all"><img src="images/gold.png"><p>Trabajo</p></a>
+                  <a href="#tirada" id="amor" data-transition="slide" class="ui-btn ui-shadow ui-corner-all">
+                    <img src="images/amor.svg"></a>
+                  <a href="#tirada" id="trabajo" data-transition="slide" class="ui-btn ui-shadow ui-corner-all">
+                    <img src="images/trabajo.svg"></a>
               </div>
   </article>
 
-  <footer data-role="footer" data-position="fixed" >
+<!--   <footer data-role="footer" data-position="fixed" >
           <nav data-role="navbar">
             <ul>
               <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Home</a></li>
-<!--               <li><a href="#tirada" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top">Tirada</a></li> -->
-              </ul>
+              <li><a href="#tirada" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top">Tirada</a></li> 
+                            </ul>
             </nav>
-        </footer>
+        </footer> -->
 
 </section>
 
