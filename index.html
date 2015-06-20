@@ -29,13 +29,18 @@
     <!-- Página principal -->
     <section data-role="page" id="home">
  
-        <!-- <article role="main" class="ui-content"> -->
-              <div data-role="controlgroup" data-type="horizontal">
+        <!-- <article role="main" data-theme="b"  class="ui-content"> -->
+<!--               <div data-role="controlgroup" data-type="horizontal">
                   <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow ui-corner-all">
                     <img src="images/icon-baraja.svg"></a>
                   <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow ui-corner-all">
                     <img src="images/icon-tirada.svg"></a>
-              </div>
+              </div> -->
+<!-- <div data-role="controlgroup" data-type="horizontal"> -->
+    <a href="#baraja" id="btn-baraja" data-transition="slide" data-theme="c" class="ui-btn ui-corner-all"><img src="images/card-white-big.svg"></br>Baraja</a>
+    <a href="#instrucciones" id="btn-tirada" data-transition="slide" data-theme="c" class="ui-btn ui-corner-all"><img src="images/deck-white-big.svg"></br>Tirada</a>
+<!-- </div> -->
+
 
         <!-- </article> -->
     <!--  -->
@@ -85,7 +90,7 @@
     <footer data-role="footer" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Inicio</a>
+                <li><a href="#home" data-rel="back" data-transition="slide" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Inicio</a>
                 </li>
                 <li><a href="#explicacion-arcano" id="significado" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja">Significado</a>
                 </li>
@@ -104,8 +109,8 @@
 
 <section id="instrucciones" data-role="page">
     <header data-role="header" data-position="fixed">
-        <a href="#home" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home"></a>
-      <h1>Instrucciones</h1>
+        <a href="#home" data-transition="slide" data-rel="back" class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left ui-btn-icon-left ui-icon-home">Inicio</a>
+      <h2>Instrucciones</h2>
     </header> 
 
   <article class="ui-content">
@@ -164,18 +169,25 @@
 
     </article>
     <!-- content -->
-
+    <div data-role="popup" id="ayuda" class="popup">
+        <h2>Ayuda</h2>
+        <p>Selecciona una carta y arrastrala hasta el cuadro libre de la izquierda. Verás que se ilumina el marco de color rojo cuando la puedas soltar. A continuación, escoge otra carta y suéltala en el cuadro de la derecha.</p>
+        <p>Para seleccionar las cartas tienes dos opciones:</p>
+        <p><mark>Arrastre rápido</mark>: desliza el dedo desde la baraja hasta el cuadro correspondiente.</p>
+        <p><mark>Selección precisa</mark>: desliza el dedo de forma horizontal encima de las cartas por la parte media de la baraja. La carta que se encuentra justo debajo del dedo sobresaldrá un poco. Levanta el dedo y vuelve a ponerlo en la parte que ha sobresalido. Ahora solo tienes que llevarlo al cuadro correspondiente.</p>
+        <a href="index.html" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a">Cerrar</a>
+    </div>
 
     <footer data-role="footer" data-position="fixed">
         <nav data-role="navbar">
             <ul>
-                <li><a href="#home" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Home</a>
+                <li><a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-shadow ui-icon-home ui-btn-icon-top">Home</a>
                 </li>
 <!--                 <li><a href="" id="Interpretacion" class="ui-btn ui-shadow ui-icon-info ui-btn-icon-top">Interpretación</a>
                 </li> -->
                 <li><a href="#instrucciones" id="reset" data-rel="back" class="ui-btn ui-shadow ui-icon-recycle ui-btn-icon-top">Otra vez</a>
                 </li>
-                <li><a href="#ayuda" class="ui-btn ui-shadow ui-icon-comment ui-btn-icon-top">Ayuda</a>
+                <li><a href="#ayuda" data-rel="popup" data-transition="pop" data-position-to="#carta-baraja" class="ui-btn ui-shadow ui-icon-comment ui-btn-icon-top">Ayuda</a>
                 </li>
             </ul>
         </nav>

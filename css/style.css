@@ -6,12 +6,12 @@
 
 
 
-#home .ui-controlgroup {
+#home a {
 
-  margin: 0 auto;
-  max-width: 300px;
-  padding-top: 100%;
-  text-align: center;
+  top: 200px;
+  margin: 10% auto;
+  max-width: 200px;
+
 }
 /*Pagina de Baraja******************************************************/
 #baraja {
