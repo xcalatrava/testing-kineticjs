@@ -9,12 +9,13 @@ var localDB = null;
 function onInit(){
     //$("#status").append("</br>" +  "Comprobando DB.");
     try {
-            if (!window.openDatabase) {
+            if (!window.sqlitePlugin.openDatabase) {
                 //$("#status").append("</br>" +  "Error, su navegador no permite crear BBDD.");
                 alert("Error, su navegador no permite crear BBDD.");
             }
             else {
-                localDB = window.openDatabase("ResultadosDB", "1.0", "ResultadosDB", 65536);
+                // localDB = window.openDatabase("ResultadosDB", "1.0", "ResultadosDB", 65536);
+                localDB = window.sqlitePlugin.openDatabase({name: "ResultadosDB", location: 2});
                 CheckDB();
                  //                 $("#status").html(""); 
             };
