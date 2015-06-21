@@ -12,9 +12,11 @@ function onDeviceReady() {
 
     localDB = window.openDatabase({
         name: "ResultadosDB",
-        androidLockWorkaround: 1,
-        location: 2
+        "1.0",
+        "ResultadosDB",
+        10000
     });
+    var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 
     var query = null;
     localDB.transaction(function(tx) {
