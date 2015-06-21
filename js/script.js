@@ -10,13 +10,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
  
 function onDeviceReady() {
 
-    localDB = window.openDatabase({
-        name: "ResultadosDB",
-        "1.0",
-        "ResultadosDB",
-        10000
-    });
-    var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+    localDB = window.openDatabase("ResultadosDB","1.0","ResultadosDB",10000);
+
 
     var query = null;
     localDB.transaction(function(tx) {
