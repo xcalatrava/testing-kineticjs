@@ -5,8 +5,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 var localDB = null;
+
+document.addEventListener("deviceready", onDeviceReady, false);
  
-function onInit(){
+function onDeviceReady(){
     //$("#status").append("</br>" +  "Comprobando DB.");
     try {
             if (!window.sqlitePlugin.openDatabase) {
