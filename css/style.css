@@ -5,7 +5,6 @@
 }
 
 
-
 #home a {
 
   top: 200px;
@@ -54,8 +53,24 @@
 
 /*Pagina de Instrucciones***********************************************/
 #instrucciones {
-  background: url('../images/fondo_tirada_r.jpg');
   background-size: cover;
+}
+
+@media screen and (max-height: 1024px) {
+    #instrucciones {
+        background: url('../images/fondo_tirada_1024_r.jpg');
+    }
+}
+
+@media screen and (max-height: 1280px) {
+    #instrucciones {
+        background: url('../images/fondo_tirada_1280_r.jpg');
+    }
+}
+@media screen and (max-height: 1920px) {
+    #instrucciones {
+        background: url('../images/fondo_tirada_1920_r.jpg');
+    }
 }
 #instrucciones .ui-content{
   color: white;
@@ -111,6 +126,24 @@ line-height: 1;
 #tirada {
     background: url('../images/fondo_tirada.jpg');
     background-size: cover;
+}
+
+
+@media screen and (max-height: 1024px) {
+    #tirada {
+        background: url('../images/fondo_tirada_1024.jpg');
+    }
+}
+
+@media screen and (max-height: 1280px) {
+    #tirada {
+        background: url('../images/fondo_tirada_1280.jpg');
+    }
+}
+@media screen and (max-height: 1920px) {
+    #tirada {
+        background: url('../images/fondo_tirada_1920.jpg');
+    }
 }
 
 .card {
@@ -238,5 +271,11 @@ text-shadow: rgb(238, 238, 238) 0px 1px 0px;
 	text-decoration: underline;
 	text-align: center;
 	font: bold;	
+}
+
+@media screen and (orientation: portrait){
+.ui-mobile .ui-page {
+  min-height: 1000px;
+}
 }
 
