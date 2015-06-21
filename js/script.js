@@ -10,26 +10,27 @@ document.addEventListener("deviceready", onDeviceReady, false);
  
 function onDeviceReady() {
 
-    localDB = window.sqlitePlugin.openDatabase({
+    localDB = window.openDatabase({
         name: "ResultadosDB",
+        androidLockWorkaround: 1,
         location: 2
     });
 
     var query = null;
     localDB.transaction(function(tx) {
         query = 'DROP TABLE IF EXISTS info';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
         query = 'DROP TABLE IF EXISTS predicciones';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
         query = 'DROP TABLE IF EXISTS historico';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
 
         query = 'CREATE TABLE IF NOT EXISTS info (id , parametro , valor )';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
         query = 'CREATE TABLE IF NOT EXISTS predicciones (combinacion , amor, trabajo )';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
         query = 'CREATE TABLE IF NOT EXISTS historico (fecha , pregunta , prediccion , puntuacion )';
-        tx.executeSql(query, [], CreaTablas_OnSuccess, SQL_OnError);
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
     }, SQL_OnError);
     var field = null;
     var res = $.getResults("resultados.txt");
@@ -44,12 +45,12 @@ function onDeviceReady() {
             field[1] = field[1].replace('\'', '');
             field[2] = field[2].replace('\'', '');
             tx.executeSql("INSERT INTO predicciones (combinacion, amor, trabajo) VALUES (?,?,?)", [field[0], field[1], field[2]],
-                SQL_OnError,
+                SQL_OnSuccess,
                 SQL_OnError);
         };
 
         tx.executeSql('INSERT INTO info VALUES(1, "version", "1.0.0.1")', [],
-            SQL_OnError,
+            SQL_OnSuccess,
             SQL_OnError);
     });
 
@@ -84,7 +85,9 @@ function Recupera_prediccion (){
 function SQL_OnError (){
     alert ("Error en SQL");
 }
-
+function SQL_OnSuccess (){
+    alert ("SQL OK");
+}
 
 jQuery.extend({
     getResults: function(url) {
