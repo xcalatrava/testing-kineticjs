@@ -7,56 +7,6 @@
 var localDB = null;
 
 
- 
-function onDeviceReady() {
-
-    localDB = window.openDatabase("ResultadosDB","1.0","ResultadosDB",10000);
-
-
-    var query = null;
-    localDB.transaction(function(tx) {
-        query = 'DROP TABLE IF EXISTS info';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-        query = 'DROP TABLE IF EXISTS predicciones';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-        query = 'DROP TABLE IF EXISTS historico';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-
-        query = 'CREATE TABLE IF NOT EXISTS info (id , parametro , valor )';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-        query = 'CREATE TABLE IF NOT EXISTS predicciones (combinacion , amor, trabajo )';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-        query = 'CREATE TABLE IF NOT EXISTS historico (fecha , pregunta , prediccion , puntuacion )';
-        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
-    }, SQL_OnError);
-    var field = null;
-    var res = $.getResults("resultados.txt");
-    var array_resultados = res.split("\n");
-
-    localDB.transaction(function(tx) {
-
-        for (var i = 0; i < array_resultados.length - 1; i++) {
-
-            field = array_resultados[i].split("':'");
-            field[0] = field[0].replace('\'', '');
-            field[1] = field[1].replace('\'', '');
-            field[2] = field[2].replace('\'', '');
-            tx.executeSql("INSERT INTO predicciones (combinacion, amor, trabajo) VALUES (?,?,?)", [field[0], field[1], field[2]],
-                SQL_OnSuccess,
-                SQL_OnError);
-        };
-
-        tx.executeSql('INSERT INTO info VALUES(1, "version", "1.0.0.1")', [],
-            SQL_OnSuccess,
-            SQL_OnError);
-    });
-
-    console.log("ya esta");
-
-
-}
-
-
 function Recupera_prediccion (){
            localDB.transaction(function(tx) {            
               tx.executeSql("SELECT * FROM predicciones WHERE combinacion = \'" + definicion + "\'", [], function(tx, results) {
@@ -625,7 +575,7 @@ $(document).ready(function() {
 
 
 
-
+    document.addEventListener("deviceready", onDeviceReady, false);
     // $("#info").hide();
     // screen.lockOrientation('portrait');
     //cuando jquery está preparado inicializa la mesa colocando la baraja desordenada
@@ -725,3 +675,55 @@ $(document).ready(function() {
 
 });
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//GESION DE LA BBDD
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function onDeviceReady() {
+
+    localDB = window.openDatabase("ResultadosDB","1.0","ResultadosDB",10000);
+
+
+    var query = null;
+    localDB.transaction(function(tx) {
+        query = 'DROP TABLE IF EXISTS info';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+        query = 'DROP TABLE IF EXISTS predicciones';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+        query = 'DROP TABLE IF EXISTS historico';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+
+        query = 'CREATE TABLE IF NOT EXISTS info (id , parametro , valor )';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+        query = 'CREATE TABLE IF NOT EXISTS predicciones (combinacion , amor, trabajo )';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+        query = 'CREATE TABLE IF NOT EXISTS historico (fecha , pregunta , prediccion , puntuacion )';
+        tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+    }, SQL_OnError);
+    var field = null;
+    var res = $.getResults("resultados.txt");
+    var array_resultados = res.split("\n");
+
+    localDB.transaction(function(tx) {
+
+        for (var i = 0; i < array_resultados.length - 1; i++) {
+
+            field = array_resultados[i].split("':'");
+            field[0] = field[0].replace('\'', '');
+            field[1] = field[1].replace('\'', '');
+            field[2] = field[2].replace('\'', '');
+            tx.executeSql("INSERT INTO predicciones (combinacion, amor, trabajo) VALUES (?,?,?)", [field[0], field[1], field[2]],
+                SQL_OnSuccess,
+                SQL_OnError);
+        };
+
+        tx.executeSql('INSERT INTO info VALUES(1, "version", "1.0.0.1")', [],
+            SQL_OnSuccess,
+            SQL_OnError);
+    });
+
+    console.log("ya esta");
+
+
+}
