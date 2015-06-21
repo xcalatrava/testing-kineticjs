@@ -27,7 +27,8 @@
 	<gap:platform name="android" />
 	<gap:platform name="winphone" />
 
-    <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
+    <gap:plugin name="com.phonegap.plugin.sqlite" />
+
 
 
 
