@@ -6,7 +6,10 @@
 
 var localDB = null;
 
-document.addEventListener("deviceready", onDeviceReady, false);
+function Init (){
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+
  
 function onDeviceReady() {
 
@@ -83,7 +86,7 @@ function SQL_OnError (){
     alert ("Error en SQL");
 }
 function SQL_OnSuccess (){
-    alert ("SQL OK");
+    // alert ("SQL OK");
 }
 
 jQuery.extend({
