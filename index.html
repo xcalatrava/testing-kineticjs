@@ -5,16 +5,16 @@
   <title>jQuery Mobile Web Apps</title>
   <script src="js/jquery.js"></script>
   <script src="js/jquerymobile.js"></script>
-<!--   // <script src="js/cjson.js"></script> -->
   <script src="js/kinetic.js"></script>
   <script src="js/coverflow.min.js"></script>
   <script src="js/definiciones.js"></script> 
   <script src="js/script.js"></script>
    <script type="text/javascript" language="javascript">
-   document.addEventListener("deviceready", onDeviceReady, false);
-    function Init() {
-      document.addEventListener("deviceready", onDeviceReady, false);
+   
+   function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
     }
+
   </script>
 
   <!-- stylesheets -->
@@ -27,22 +27,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
-<body onload="Init()">
+<body onload="onLoad()">
   <!--  Page - Home -->
     <!-- Página principal -->
     <section data-role="page" id="home">
- 
-        <!-- <article role="main" data-theme="b"  class="ui-content"> -->
-<!--               <div data-role="controlgroup" data-type="horizontal">
-                  <a href="#baraja" id="btn-baraja" class="ui-btn ui-shadow ui-corner-all">
-                    <img src="images/icon-baraja.svg"></a>
-                  <a href="#instrucciones" id="btn-tirada" class="ui-btn ui-shadow ui-corner-all">
-                    <img src="images/icon-tirada.svg"></a>
-              </div> -->
-<!-- <div data-role="controlgroup" data-type="horizontal"> -->
+
     <a href="#baraja" id="btn-baraja" data-transition="slide" data-theme="c" class="ui-btn ui-corner-all"><img src="images/card-white-big.svg"></br>Baraja</a>
     <a href="#instrucciones" id="btn-tirada" data-transition="slide" data-theme="c" class="ui-btn ui-corner-all"><img src="images/deck-white-big.svg"></br>Tirada</a>
-<!-- </div> -->
 
 
         <!-- </article> -->
