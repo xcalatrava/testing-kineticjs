@@ -1,3 +1,73 @@
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        localDB = window.openDatabase("ResultadosDB", "1.0", "ResultadosDB", 10000);
+
+
+        var query = null;
+        localDB.transaction(function(tx) {
+            query = 'DROP TABLE IF EXISTS info';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+            query = 'DROP TABLE IF EXISTS predicciones';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+            query = 'DROP TABLE IF EXISTS historico';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+
+            query = 'CREATE TABLE IF NOT EXISTS info (id , parametro , valor )';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+            query = 'CREATE TABLE IF NOT EXISTS predicciones (combinacion , amor, trabajo )';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+            query = 'CREATE TABLE IF NOT EXISTS historico (fecha , pregunta , prediccion , puntuacion )';
+            tx.executeSql(query, [], SQL_OnSuccess, SQL_OnError);
+        }, SQL_OnError);
+        var field = null;
+        var res = $.getResults("resultados.txt");
+        var array_resultados = res.split("\n");
+
+        localDB.transaction(function(tx) {
+
+            for (var i = 0; i < array_resultados.length - 1; i++) {
+
+                field = array_resultados[i].split("':'");
+                field[0] = field[0].replace('\'', '');
+                field[1] = field[1].replace('\'', '');
+                field[2] = field[2].replace('\'', '');
+                tx.executeSql("INSERT INTO predicciones (combinacion, amor, trabajo) VALUES (?,?,?)", [field[0], field[1], field[2]],
+                    SQL_OnSuccess,
+                    SQL_OnError);
+            };
+
+            tx.executeSql('INSERT INTO info VALUES(1, "version", "1.0.0.1")', [],
+                SQL_OnSuccess,
+                SQL_OnError);
+        });
+
+        console.log("ya esta");
+
+
+        console.log('Received Event: ' + id);
+    }
+};
+
+app.initialize();
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -225,13 +295,13 @@ function Interpreta(){
 
     $("#carta1").animate({
         left: ($(".container").width()-285)/2,
-        top: "10%",
+        top: "5%",
         width: 100 * 1.5,
         height: 163 * 1.5
     },500);    
     $("#carta2").animate({
         left: $("#carta1").css("left") + 150 + 20,
-        top: "10%",
+        top: "5%",
         width: 100 * 1.5,
         height: 163 * 1.5
     },500);
@@ -589,7 +659,6 @@ $(document).ready(function() {
                 $("#explicacion-arcano-explicacion").html(definiciones_arcanos[0][2]);
                 $("#explicacion-arcano-resumen").html(definiciones_arcanos[0][3]);
 
-
                 break;
 
             case 'tirada':
@@ -601,6 +670,12 @@ $(document).ready(function() {
                 $("#carta2").removeClass("flipped");
                 $("#interpretacion").hide();
                 $("#interpretacion").css("margin-top", "0px");
+
+                break
+
+            case 'instrucciones':
+                console.log("current" + activePageId);
+                $(".ui-mobile-viewport").css("overflow-x", "auto");
 
                 break;
         }

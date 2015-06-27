@@ -8,15 +8,6 @@
   <script src="js/kinetic.js"></script>
   <script src="js/coverflow.min.js"></script>
   <script src="js/definiciones.js"></script> 
-  <script src="js/script.js"></script>
-   <script type="text/javascript" language="javascript">
-   
-   function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
-
-  </script>
-
   <!-- stylesheets -->
   <link rel="stylesheet" href="css/jquerymobile.css">
   <link rel="stylesheet" href="css/auric-theme.min.css">
@@ -27,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 
-<body onload="onLoad()">
+<body>
   <!--  Page - Home -->
     <!-- Página principal -->
     <section data-role="page" id="home">
@@ -192,7 +183,8 @@
 </section>
 <!-- home -->
 
-
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>

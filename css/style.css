@@ -1,3 +1,21 @@
+html,
+body,
+.ui-page {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.ui-page,
+.ui-page * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-page .ui-content {
+  height: inherit;
+}
+
+
 /*Pagina principal*******************************************************/
 #home {
   background: url('../images/fondo_home.jpg');
@@ -98,26 +116,12 @@ line-height: 1;
 }
 
 #amor{
-  width: 35%;
+  /*width: 35%;*/
 }
 #trabajo{
-  width: 35%;
-}
-#corazon {
-  position: relative;
-  display: block;
-  float: left;
-  bottom: 0px;
-  background-color: brown;
+  /*width: 35%;*/
 }
 
-#dinero {
-  position: relative;
-  display: block;
-  float: right;
-  bottom: 0px;
-  background-color: brown;
-}
 
 
 
@@ -219,9 +223,11 @@ line-height: 1;
      /*panel con la interpretación de la tirada***********************************/
 
 #interpretacion{
-	top: 55%;
-	height: 60%;
-	padding: 10px;
+  top: 55%;
+  height: 186px;
+  padding: 10px;
+  
+  overflow: scroll;
   /*overflow: scroll;*/
   position: absolute;
 /*    background-color: #2a2a2a;
@@ -262,20 +268,10 @@ text-shadow: rgb(238, 238, 238) 0px 1px 0px;
 
 }
 
-/*.ui-content{
-	overflow: hidden;
-}*/
-
 
 #interpretacion-titulo {
 	text-decoration: underline;
 	text-align: center;
 	font: bold;	
-}
-
-@media screen and (orientation: portrait){
-.ui-mobile .ui-page {
-  min-height: 1000px;
-}
 }
 
