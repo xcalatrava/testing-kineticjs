@@ -210,7 +210,7 @@ function Muestra_cartas(images) {
     escala = escala / cartas[0].width();
 
 
-    var tween1 = new Kinetic.Tween({
+    var tween1 = new Konva.Tween({
         node: cartas[0],
         duration: 1,
         x: 0,
@@ -218,14 +218,15 @@ function Muestra_cartas(images) {
         scaleY: escala,
         scaleX: escala,
         onFinish: function() {
+            tween1.destroy();
         },
-        easing: Kinetic.Easings.EaseInOut
+        easing: Konva.Easings.EaseInOut
     });
 
     // play tween
     tween1.play();
 
-     var tween2 = new Kinetic.Tween({
+     var tween2 = new Konva.Tween({
                 node: cartas[1],
                 duration: 1,
                 x: cartas[1].width() * escala + 20,
@@ -264,11 +265,11 @@ function Muestra_cartas(images) {
 
                     });
 
-
+                    tween2.destroy();
 
                 },
 
-                easing: Kinetic.Easings.EaseInOut
+                easing: Konva.Easings.EaseInOut
             });
 
             tween2.play();
@@ -334,7 +335,7 @@ function Inicializa_mesa(images) {
     var lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
     shuffleArray(lista);
 
-    stage = new Kinetic.Stage({
+    stage = new Konva.Stage({
         container: 'container',
         width: $("#container").width(),
         height: (window.innerHeight / 100) * 80,
@@ -345,9 +346,10 @@ function Inicializa_mesa(images) {
  
 
 
-    group_baraja = new Kinetic.Group();
-    group_escogidas = new Kinetic.Group();
-    layer = new Kinetic.Layer();
+    group_baraja = new Konva.Group();
+    group_escogidas = new Konva.Group();
+    layer = new Konva.Layer();
+    // layer0 = new Konva.Layer();
 
 //pone cada una de las cartas encima de la mesa en la posicion de baraja
     for (var n = 1; n < 22; n++) {
@@ -356,7 +358,7 @@ function Inicializa_mesa(images) {
             var imageObj = new Image();
             var imageObj = images.reverso;
 
-            var rectangle = new Kinetic.Image({
+            var rectangle = new Konva.Image({
                 x: (stage.getWidth() / 2 - 5),
                 y: -200 + Math.random() * 20,
                 ox: (stage.getWidth() / 2 - 5),
@@ -368,6 +370,7 @@ function Inicializa_mesa(images) {
                 cornerRadius: 5,
                 name: 'carta',
                 id: 'carta' + lista[n-1],
+                ind: lista[n-1],
                 escogida: false,
                 draggable: false,
                 image: imageObj,
@@ -376,9 +379,11 @@ function Inicializa_mesa(images) {
                     y: -225
                 },
                 rotation: 18 - (1.7 * n),
-                or: 18 - (1.7 * n)
+                or: 18 - (1.7 * n),
+                perfectDrawEnabled : false
             });
 
+            rectangle.strokeHitEnabled(false);
             group_baraja.add(rectangle);
 
             //movimiento de las cartas al pasar el dedo por encima
@@ -386,7 +391,10 @@ function Inicializa_mesa(images) {
             rectangle.on('mouseover touchmove', function(evt) {
                 var posicion = stage.getPointerPosition();
 
-                $("footer h1").html(rectangle.getId() + "x:" + posicion.x + " y:" + posicion.y);
+                // $("footer h1").html(rectangle.getId() + "x:" + posicion.x + " y:" + posicion.y);
+
+                // this.moveTo(layer);
+
                 if (typeof(lastcarta) != "undefined" && lastcarta != rectangle && lastcarta.attrs.escogida === false) {
                     lastcarta.offset({
                         x: 50,
@@ -405,7 +413,11 @@ function Inicializa_mesa(images) {
                     lastcarta = rectangle;
                 }
 
-                layer.draw();
+                layer.batchDraw();
+
+
+                // this.moveTo(layer0);
+                // this.setZIndex(this.attrs.ind);
 
                 if (posicion.y - last_pos_y > 20) {
                     rectangle.fire("touchstart");
@@ -418,9 +430,12 @@ function Inicializa_mesa(images) {
             //arrastre de las cartas 
             rectangle.on("dragstart", function() {
                 rectangle.startingPos = rectangle.position();
-                $("footer h1").html("Draggin....");
+                // $("footer h1").html("Draggin....");
             })
             rectangle.on('dragmove', function() {
+
+                // this.moveTo(layer);
+
                 var posicion = stage.getPointerPosition();
                 if (rectangle.getY() > (rectangle.attrs.oy + 30)) {
                     rectangle.rotation(0);
@@ -444,10 +459,15 @@ function Inicializa_mesa(images) {
                     carta_escogida1_shadow.visible(false);
                     carta_escogida2_shadow.visible(false);
                 }
-                layer.draw();
+                layer.batchDraw();
+
+                // this.moveTo(layer0);
+                // this.setZIndex(this.attrs.ind);
             });
 
             rectangle.on('dragend', function() {
+
+                // this.moveTo(layer);
 
                 if (eleccion_activa && isNearOutline(rectangle, eleccion_activa)) {
                     rectangle.setPosition({
@@ -487,7 +507,10 @@ function Inicializa_mesa(images) {
                 }
                 carta_escogida1_shadow.visible(false);
                 carta_escogida2_shadow.visible(false);
-                layer.draw();
+                layer.batchDraw();
+
+                // this.moveTo(layer0);
+                // this.setZIndex(this.attrs.ind);
             });
 
 
@@ -495,7 +518,7 @@ function Inicializa_mesa(images) {
     }
 
     //recatangulo que acoge la cartas escogida 1
-    var carta_escogida1 = new Kinetic.Rect({
+    var carta_escogida1 = new Konva.Rect({
         x: Math.floor((stage.getWidth() - 220) / 2),
         y: Math.floor(stage.getHeight() - 180),
         width: 100,
@@ -508,7 +531,7 @@ function Inicializa_mesa(images) {
         draggable: false,
     })
     //rectangulo de sombra de la posición 1
-    var carta_escogida1_shadow = new Kinetic.Rect({
+    var carta_escogida1_shadow = new Konva.Rect({
         x: Math.floor((stage.getWidth() - 220) / 2)-5,
         y: Math.floor(stage.getHeight() - 180)-5,
         width: 100,
@@ -533,7 +556,7 @@ function Inicializa_mesa(images) {
     layer.add(carta_escogida1);
 
     //definición de la posición de la carta escogida 2
-    var carta_escogida2 = new Kinetic.Rect({
+    var carta_escogida2 = new Konva.Rect({
         x: carta_escogida1.attrs.x + 100 + 20,
         y: carta_escogida1.attrs.y,
         width: 100,
@@ -546,7 +569,7 @@ function Inicializa_mesa(images) {
         draggable: false,       
     })
     //definición de la sombra de la posición de la carta escogida 2
-    var carta_escogida2_shadow = new Kinetic.Rect({
+    var carta_escogida2_shadow = new Konva.Rect({
         x: carta_escogida1.attrs.x + 100 + 15,
         y: carta_escogida1.attrs.y-5,
         width: 100,
@@ -572,9 +595,10 @@ function Inicializa_mesa(images) {
     layer.add(group_baraja);
 
 
+    // stage.add(layer0);
     stage.add(layer);
 
-    stage.draw();
+    stage.batchDraw();
 
     return (stage);
 
