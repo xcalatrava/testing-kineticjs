@@ -108,18 +108,16 @@ line-height: 1;
 
 #instrucciones .ui-controlgroup-controls{
   width: 100%;
+  /*max-width: 125px;*/
   text-align: center;
 }
 
-#contexto{
-  text-align: center;
-}
 
 #amor{
-  /*width: 35%;*/
+  width: 80px;
 }
 #trabajo{
-  /*width: 35%;*/
+  width: 80px;
 }
 
 
