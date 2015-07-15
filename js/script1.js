@@ -365,6 +365,8 @@ function Inicializa_mesa(images) {
                 oy: -200 + Math.random() * 20,
                 width: 100,
                 height: 163,
+                // stroke: 'black',
+                // strokeWidth: 0,
                 cornerRadius: 5,
                 name: 'carta',
                 id: 'carta' + lista[n-1],
@@ -378,11 +380,10 @@ function Inicializa_mesa(images) {
                 },
                 rotation: 18 - (1.7 * n),
                 or: 18 - (1.7 * n),
-                perfectDrawEnabled : false,
-                strokeHitEnabled: false
+                perfectDrawEnabled : false
             });
 
-
+            rectangle.strokeHitEnabled(false);
             group_baraja.add(rectangle);
 
             //movimiento de las cartas al pasar el dedo por encima
@@ -395,6 +396,7 @@ function Inicializa_mesa(images) {
                 //rectangle.moveTo(layer);
 
                 if (typeof(lastcarta) != "undefined" && lastcarta != rectangle && lastcarta.attrs.escogida === false) {
+                    //la carta tocada anteriormente vuelve a su sitio
                     lastcarta.offset({
                         x: 50,
                         y: -225
@@ -403,6 +405,7 @@ function Inicializa_mesa(images) {
 
                 }
                 if (!rectangle.attrs.escogida) {
+                    //la carta tocada sobresale 50px
                     rectangle.offset({
                         x: 50,
                         y: -270
@@ -433,9 +436,10 @@ function Inicializa_mesa(images) {
             })
             rectangle.on('dragmove', function() {
 
-                // this.moveTo(layer);
+                
 
                 var posicion = stage.getPointerPosition();
+                //si se arrastra la carta 30px hacia abajo endereza la carta
                 if (rectangle.getY() > (rectangle.attrs.oy + 30)) {
                     rectangle.rotation(0);
                     rectangle.setPosition({
@@ -447,6 +451,7 @@ function Inicializa_mesa(images) {
                     rectangle.rotation(rectangle.attrs.or);
                     rectangle.offsetY(-270);
                 }
+                //si se acerca a las posiciones de dejar la carta marca la zona en rojo
                 if (eleccion_activa && isNearOutline(rectangle, eleccion_activa)) {
                     if (eleccion_activa.name() === 'carta_escogida1') {
                         carta_escogida1_shadow.visible(true);

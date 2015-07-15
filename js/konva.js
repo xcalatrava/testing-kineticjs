@@ -10846,9 +10846,9 @@ var Konva = {};
         else {
             this.on('mousedown.konva touchstart.konva', function(evt) {
                 // ignore right and middle buttons
-                if (evt.evt.button === 1 || evt.evt.button === 2) {
-                    return;
-                }
+                // if (evt.evt.button === 1 || evt.evt.button === 2) {
+                //     return;
+                // }
                 if(!Konva.DD.node) {
                     that.startDrag(evt);
                 }
